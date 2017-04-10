@@ -28,6 +28,7 @@ file description: This file is the partial EJS file that can be required by othe
   <!--   This is the main navbar at the top of every -->
   <nav class="navbar navbar-inverse navbar-fixed-top" >
     <ul class="nav navbar-nav">
+      
       <% if (!user) { %>
       
       <li><a href="/login">Login</a></li>
@@ -39,11 +40,9 @@ file description: This file is the partial EJS file that can be required by othe
       <li><a href="/certificatesDashboard">Course Dashboard</a></li>
       <li><a href="/expiringSoon">Expiring Soon</a></li>
        <li><a href="/logout">log out</a></li>
-    <li><a href="/logout">Logout</a></li>
+    
   </ul>
-  <div class="navbar-text pull-right">
-    <%= user.username %>
-  </div>
+  
   <% } %>
 
       
