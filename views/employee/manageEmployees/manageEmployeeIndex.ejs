@@ -1,0 +1,23 @@
+<% include ../../partials/header.ejs %>
+<div class="container-fluid" style="margin-top:50px;">
+
+<a href="manageEmployees/add" class="btn btn-success" style="margin-bottom:10px;">Add a New employee</a>
+
+
+<table class="table table-inverse table-hover">
+    <tr><th>First Name</th><th>surName</th><th>department</th><th>Edit</th><th>Delete</th></tr>
+
+    <% for (var i = 0; i < users.length; i++) { %>
+        <tr>
+            <td><%= users[i].firstName %></td>
+            <td><%= users[i].surName %></td>
+            <td><%= users[i].departmentname %></td>
+            <td><a href="manageEmployees/<%= users[i]._id %>" class="btn btn-info">Edit</a></td>
+            <td><a href="manageEmployees/delete/<%= users[i]._id %>" class="confirmation btn btn-danger">Delete</a></td>
+          
+        </tr>
+    <% } %>
+
+</table>
+</div>
+<%include ../../partials/footer.ejs%>

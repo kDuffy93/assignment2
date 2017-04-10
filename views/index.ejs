@@ -1,0 +1,31 @@
+<% include ./partials/header.ejs %>
+
+<h2>Western Health & Safety Dashboard</h2>
+<div class="container-fluid">
+  <div class = "row equal" style="margin-top:75px;" >
+     <div class="col-md-8 col-md-offset-2 container-fluid">
+         <a href="/employeeDashboard" >
+                    <div style="border-color:#555555; border-width:1pt;"  class="col-md-4   btn btm-hover jumbotron container-fluid">
+                           <p>Employee Dashboard</P>
+               
+                    </div>
+          </a><!-- end button 1-->
+          <a href="/certificatesDashboard">
+                <div style="border-color:#555555; border-width:1pt;"  class="col-md-4 col-md-offset-1  btn btm-hover jumbotron container-fluid">
+                     <p>Certificates Dashboard</P>
+                </div>
+          </a><!-- end button 2-->
+          <a href="/expiringSoon">
+                <div style="border-color:#555555; border-width:1pt;"  class="col-md-4   btn btm-hover jumbotron container-fluid">
+                      <p>Expiring Soon</P>
+                </div>
+        </a><!-- end button 3-->
+        <a href="#">  
+            <div style="border-color:#555555; border-width:1pt;"  class="col-md-4 col-md-offset-1  btn btm-hover jumbotron container-fluid">
+                <p>N/a</P>   
+            </div>
+        </a><!-- end button 4 -->
+    </div><!-- button container -->
+  </div><!-- end row -->
+</div><!-- end container -->
+<%include ./partials/footer.ejs%>

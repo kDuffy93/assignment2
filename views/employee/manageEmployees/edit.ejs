@@ -1,0 +1,52 @@
+<% include ../../partials/header.ejs %>
+
+<main class="container">
+
+<h1>Edit Employee Record</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="firstName" class="col-sm-2 control-label">First Name: </label>
+        <input name="firstName" id="firstName" required value="<%= user.firstName %>" />
+    </div>
+    <div class="form-group">
+        <label for="surName" class="col-sm-2 control-label">Last Name: </label>
+        <input name="surName" id="surName" required value="<%= user.surName %>" />
+    </div>
+
+   <div class="form-group">
+        <label for="departmentname" class="col-sm-2 control-label">department: </label>
+        <select name="departmentname" id="departmentname" >
+<% for (var i = 0; i < departments.length; i++) { %>
+<% if(departments[i].departmentname == dptName){ %>
+<option selected="selected" value="<%= departments[i].departmentname%>"> 
+         <%= departments[i].departmentname%>
+       </option>
+ <% } %>
+<% if(departments[i].departmentname != dptName ){ %>
+<option  value="<%= departments[i].departmentname%>"> 
+         <%= departments[i].departmentname%>
+       </option>
+ <% } %>
+
+ <% } %>
+     
+   
+        </select>
+         
+   </div>
+   <div class="form-group">
+            <label for="username" class="col-sm-2 control-label">email: </label>
+            <input name="username" id="username" required type="email" value='<%= user.username %>'/>
+        </div>
+        
+
+
+    <button class="btn btn-success col-sm-offset-2">Save</button>
+</form>
+
+</main>
+
+
+
+<%include ../../partials/footer.ejs%>
