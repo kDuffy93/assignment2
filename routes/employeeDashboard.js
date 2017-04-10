@@ -8,24 +8,27 @@ let session = require('express-session');
 let localStrategy = require('passport-local').Strategy;
 let plm = require('passport-local-mongoose');
 
+//auth on every page
+var department = require ('../models/department');
+  /* GET department page */
+  router.use( function(req, res, next) {
+if(!req.user){
+  
+  res.redirect('/login')
+}
+next();
+  });
+
+
 /* GET the employee dashboard */
 router.get('/', function(req, res, next) {
-  if(!req.user)
-  {
-res.render('employeeDashboard', { title: 'Employee Dashboard' });
-  }
-  else{
-res.redirect('/login');
-  }
+res.render('employeeDashboard', { title: 'Employee Dashboard', user: req.user });
 });
 
 //------------------------------for departments------------------------------------------------
-var department = require ('../models/department');
 
 
-  /* GET department page */
 router.get('/department', function(req, res, next) {
- if(!req.user)  {
 
    // use mongoose model to query mongodb for all books
    department.find(function(err, departments) {
@@ -35,37 +38,25 @@ router.get('/department', function(req, res, next) {
          res.end(err);
          return;
       }
-
-
-
       // no error so send the books to the index view
       res.render('employee/department/departmentIndex', {
          departments: departments,
-         title: 'Departments Index' 
+         title: 'Departments Index' , user: req.user 
       });
    });
-  }
-  else{
-res.redirect('/login');
-  }
 });
 
 router.get('/department/add', function(req, res, next) {
- if(!req.user)
-   {
+
 res.render('employee/department/add', { 
-         title: 'Add Department' 
+         title: 'Add Department' , user: req.user 
  });
-  }
-  else{
-res.redirect('/login');
-  }
+
 });
 
 
 router.post('/department/add', function(req, res, next) {
- if(!req.user)
-   {
+ 
   department.create(
     {
         departmentname : req.body.departmentname
@@ -80,15 +71,11 @@ router.post('/department/add', function(req, res, next) {
            res.redirect('/employeeDashboard/department');
 
     });
-  }
-  else{
-    res.redirect('/login');
-  }
-  });
+      });
+ 
 
   router.get('/department/delete/:_id', function(req, res, next) {
- if(!req.user)
-   {
+
     let _id = req.params._id;
   department.remove({ _id: _id }, function (err, departments) {
           if (err) 
@@ -100,16 +87,11 @@ router.post('/department/add', function(req, res, next) {
            res.redirect('/employeeDashboard/department');
 
     });
-  }
-  else
-  {
-res.redirect('/login');
-  }
+  
   });
 
   router.get('/department/:_id', function(req, res, next) {
- if(!req.user)
-  {
+ 
    // grab id from the url
    let _id = req.params._id;
 
@@ -122,19 +104,15 @@ res.redirect('/login');
       }
       res.render('employee/department/edit', {
          department: department,
-         title: 'Edit Department'
+         title: 'Edit Department' , user: req.user 
       });
    });
-  }
-  else{
-res.redirect('/login');
-  }
+ 
 });
 
 
 router.post('/department/:_id', function(req, res, next) {
- if(!req.user)
-  {
+ 
    // grab id from url
    let _id = req.params._id;
 
@@ -153,10 +131,7 @@ router.post('/department/:_id', function(req, res, next) {
       }
       res.redirect('/employeeDashboard/department');
    });
-  }
-  else{
-res.redirect('/login');
-  }
+  
 });
 
 
@@ -166,8 +141,7 @@ res.redirect('/login');
 
   /* GET department page */
 router.get('/manageEmployee', function(req, res, next) {
- if(!req.user)
-  {
+ 
   
 
    // use mongoose model to query mongodb for all books
@@ -185,20 +159,16 @@ router.get('/manageEmployee', function(req, res, next) {
    
       res.render('employee/manageEmployees/manageEmployeeIndex', {
          users: users,
-         title: 'Users Index'
+         title: 'Users Index' , user: req.user 
       });
    });
-  }
-  else{
-res.redirect('/login');
-  }
+ 
 });
 
 
 router.get('/manageEmployees/add', function(req, res, next) {
   
- if(!req.user)
-  {
+
 
  
   department.find(function(err, departments) {
@@ -216,18 +186,12 @@ router.get('/manageEmployees/add', function(req, res, next) {
 
       });
  });
-}
-else
-{
-  res.redirect('/login');
 
-}
 });
 
 
 router.post('/manageEmployees/add', function(req, res, next) {
- if(!req.user)
-  {
+
 
   user.register(new user(
     {
@@ -247,15 +211,11 @@ router.post('/manageEmployees/add', function(req, res, next) {
            res.redirect('/employeeDashboard/manageEmployee');
        
     });
-  }
-  else{
-res.redirect('/login');
-  }
+ 
   });
 
   router.get('/manageEmployees/delete/:_id', function(req, res, next) {
- if(!req.user)
-  {
+
     let _id = req.params._id;
   user.remove({ _id: _id }, function (err, departments) {
           if (err) 
@@ -267,15 +227,11 @@ res.redirect('/login');
            res.redirect('/employeeDashboard/manageEmployee');
 
     });
-  }
-  else{
-res.redirect('/login');
-  }
+
   });
 
   router.get('/manageEmployees/:_id', function(req, res, next) {
- if(!req.user)
-  {
+
    // grab id from the url
    let _id = req.params._id;
    department.find(function(err, departments) {
@@ -299,22 +255,18 @@ res.redirect('/login');
          user: user,
           departments: departments,
          title: 'Edit User',
-         dptName: dptName
+         dptName: dptName, user: req.user 
 
       });
     });
   });
-}
-else{
-res.redirect('/login');
-}
+
 });
 
 // post for register / add new employee
 
 router.post('/manageEmployees/:_id', function(req, res, next) {
- if(!req.user)
-  {
+
    // grab id from url
    let _id = req.params._id;
 
@@ -339,10 +291,7 @@ router.post('/manageEmployees/:_id', function(req, res, next) {
       }
       res.redirect('/employeeDashboard/manageEmployee');
    });
-  }
-  else{
-res.redirect('/login');
-  }
+ 
 });
 
 

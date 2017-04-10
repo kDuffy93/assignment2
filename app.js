@@ -38,14 +38,15 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // main routes
 
-app.use(passport.initialize());
-app.use(passport.session());
+
 // for configuring passport and session
 app.use(session({
 secret: 'some salt value here',
 resave: true,
 saveUninitialized: false
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', index);
 app.use('/employeeDashboard', employeeDashboard);
