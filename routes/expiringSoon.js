@@ -9,6 +9,7 @@ if(!req.user){
 }
 next();
   });
+  
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 res.render('expiringSoon', { title: 'Employees with cetificates expiring Soon', user: req.user });

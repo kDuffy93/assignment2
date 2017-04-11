@@ -12,8 +12,11 @@ let plm = require('passport-local-mongoose');
 var department = require ('../models/department');
   /* GET department page */
   router.use( function(req, res, next) {
-if(!req.user){
   
+if(!req.user){
+  req.session.messages =["You must be logged-in to view this page"];
+  req.session.messages1 = ["please enter you're credentials below"];
+   
   res.redirect('/login')
 }
 next();
