@@ -1,0 +1,29 @@
+<% include ../../partials/header.ejs %>
+
+<main class="container">
+
+<h1>Add a new course</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="coursename" class="col-sm-2 control-label">course Name: </label>
+        <input name="coursename" id="coursename" required />
+    </div>
+    <div class="form-group">
+     <label for="coursetype" class="col-sm-2 control-label">course Name: </label>
+    <select name="coursetype" id="coursetype">
+<% for (var i = 0; i < courseType.length; i++) { %>
+     <option class="list-group-item list-group-item-action" value="<%= courseType[i].coursetype%>">
+            <%= courseType[i].coursetype %>
+       </option>
+    <% } %>
+        </select>
+         </div>
+    <button class="btn btn-success col-sm-offset-2">Save</button>
+</form>
+
+</main>
+
+
+
+<%include ../../partials/footer.ejs%>
