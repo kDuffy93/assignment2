@@ -11,6 +11,7 @@ let localStrategy = require('passport-local').Strategy;
 // link to users table
 let user = require('./models/users');
 var index = require('./routes/index');
+var home = require('./routes/home')
 var employeeDashboard = require('./routes/employeeDashboard');
 var certificatesDashboard = require('./routes/certificatesDashboard');
 var expiringSoon = require('./routes/expiringSoon');
@@ -48,7 +49,8 @@ saveUninitialized: false
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/', index);
+app.use('/', home);
+app.use('/home', index)
 app.use('/employeeDashboard', employeeDashboard);
 app.use('/certificatesDashboard', certificatesDashboard);
 app.use('/expiringSoon', expiringSoon);

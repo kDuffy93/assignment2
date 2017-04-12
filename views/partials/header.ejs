@@ -25,22 +25,36 @@ file description: This file is the partial EJS file that can be required by othe
 
   </head>
   <body>
+    
   <!--   This is the main navbar at the top of every -->
-  <nav class="navbar navbar-inverse navbar-fixed-top" >
-    <ul class="nav navbar-nav">
+  <nav class="navbar navbar-fixed-top"  >
+    <div style="float:left; position:relative; right:56%;">
+     
+ <a  href="/"><img src="../../images/logo_western_150x75.png" /> </a>
+     
+    
+   
+    </div>
+    
+    <ul class="nav navbar-nav navbar-right">
       
       <% if (!user) { %>
+  
       
-      <li><a href="/login">Login</a></li>
+       
+      <li><a href="/login" style="position:relative; right:20px;" class="list-group-item list-group-item-action list-group-item-info">Login</a></li>
+     
   </ul>
   <% }
   else { %>
-  <li><a href="/">Dashboard</a></li>
-      <li><a href="/employeeDashboard">Employee Dashboard</a></li>
-      <li><a href="/certificatesDashboard">Course Dashboard</a></li>
-      <li><a href="/expiringSoon">Expiring Soon</a></li>
-       <li><a href="/logout">log out</a></li>
-    
+  
+  
+  <li><a href="/home" style="position:relative; right:20px;" class="list-group-item list-group-item-action list-group-item-info">Dashboard</a></li>
+      <li><a href="/employeeDashboard" style="position:relative; right:20px;" class="list-group-item list-group-item-action list-group-item-info">Employee Dashboard</a></li>
+      <li><a href="/certificatesDashboard" style="position:relative; right:20px;" class="list-group-item list-group-item-action list-group-item-info">Course Dashboard</a></li>
+      <li><a href="/expiringSoon" style="position:relative; right:20px;" class="list-group-item list-group-item-action list-group-item-info">Expiring Soon</a></li>
+       <li><a href="/logout" style="position:relative; right:20px;" class="list-group-item list-group-item-action list-group-item-info">log out</a></li>
+  
   </ul>
   
   <% } %>
@@ -48,5 +62,5 @@ file description: This file is the partial EJS file that can be required by othe
       
 
       
-    
+
   </nav>
