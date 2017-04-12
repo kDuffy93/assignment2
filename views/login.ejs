@@ -1,7 +1,9 @@
+<!-- includes the partial file header.ejs --> 
 <% include partials/header.ejs %>
 
 <main class="container">
     <h1>Login</h1>
+    <!--  checks the session to see if it needs to change the banner above login   -->
 <% if (messages.length > 0) { 
     if(messages1.length > 0) 
     {%>
@@ -23,6 +25,7 @@ else { %>
   </div>
 
 <% } %>
+<!--  login form    -->
     <form method="post">
         <div class="form-group">
             <label for="username" class="col-sm-2 control-label">E-mail</label>
@@ -32,16 +35,9 @@ else { %>
             <label for="password" class="col-sm-2 control-label">Password:</label>
             <input name="password" id="password" type="password" required />
         </div>
-
         <button style="width:145px;" class="btn btn-success col-sm-offset-2">Login</button>
-      <div class="col-sm-offset-2">
-          <a href="/google">
- 
-          <img src="/images/signInWithGoogle.png" />
-          </a>
-      </div>
     </form>
 
 </main>
-
+<!--   includes the partial file footer.ejs  -->
 <% include partials/footer.ejs %>

@@ -18,6 +18,7 @@
    <div class="form-group">
         <label for="coursename" class="col-sm-2 control-label">Course: </label>
         <select name="coursename" id="coursename">
+             <!--  logic to populate the select dropdown   -->
 <% for (var i = 0; i < courses.length; i++) { %>
      <option class="list-group-item list-group-item-action" value="<%= courses[i].coursename%>">
             <%= courses[i].coursename %>
