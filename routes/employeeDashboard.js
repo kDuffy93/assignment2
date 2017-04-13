@@ -33,18 +33,14 @@ res.render('employeeDashboard', { title: 'Employee Dashboard', user: req.user })
 
 //------------------------------for departments------------------------------------------------
 
-
+// when the router gets a request at this get, load the departments homepage and pass in an array of departments
 router.get('/department', function(req, res, next) {
-
-   // use mongoose model to query mongodb for all books
    department.find(function(err, departments) {
-     
       if (err) {
          console.log(err);
          res.end(err);
          return;
       }
-      // no error so send the books to the index view
       res.render('employee/department/departmentIndex', {
          departments: departments,
          title: 'Departments Index' , user: req.user 
@@ -52,17 +48,15 @@ router.get('/department', function(req, res, next) {
    });
 });
 
+// load the add a department page upon get reuqest
 router.get('/department/add', function(req, res, next) {
-
 res.render('employee/department/add', { 
          title: 'Add Department' , user: req.user 
  });
-
 });
 
-
+// add the new department to the database assuming it meets validation critera when the router gets a post 
 router.post('/department/add', function(req, res, next) {
- 
   department.create(
     {
         departmentname : req.body.departmentname
@@ -75,13 +69,11 @@ router.post('/department/add', function(req, res, next) {
               return;
           }
            res.redirect('/employeeDashboard/department');
-
     });
       });
  
-
+// remove the department with a matching _id from the database
   router.get('/department/delete/:_id', function(req, res, next) {
-
     let _id = req.params._id;
   department.remove({ _id: _id }, function (err, departments) {
           if (err) 
@@ -91,23 +83,21 @@ router.post('/department/add', function(req, res, next) {
               return;
           }
            res.redirect('/employeeDashboard/department');
-
     });
-  
   });
 
+// when the router gets a request at edit department it needs to get the id paramater of hte selected department from the querystring
+// search the departments table for a matching record
+// then load the edit page and pass the values to the view
   router.get('/department/:_id', function(req, res, next) {
- 
-   // grab id from the url
    let _id = req.params._id;
-
-   // use mongoose to find the selected book
    department.findById(_id, function(err, department) {
       if (err) {
          console.log(err);
          res.render('error');
          return;
       }
+      //if theres a matchid id, load the edit page for that department
       res.render('employee/department/edit', {
          department: department,
          title: 'Edit Department' , user: req.user 
@@ -116,19 +106,16 @@ router.post('/department/add', function(req, res, next) {
  
 });
 
-
+// runs when the server gets a post request from the edit department table
 router.post('/department/:_id', function(req, res, next) {
- 
-   // grab id from url
    let _id = req.params._id;
-
-
-   // populate new book from the form
+// populate a local department object to update with
    let Department = new department({
       _id: _id,
       departmentname : req.body.departmentname
    });
 
+   // update the department record with the new values
    department.update({ _id: _id }, Department,  function(err) {
       if (err) {
          console.log(err);
@@ -137,7 +124,6 @@ router.post('/department/:_id', function(req, res, next) {
       }
       res.redirect('/employeeDashboard/department');
    });
-  
 });
 
 
@@ -147,49 +133,31 @@ router.post('/department/:_id', function(req, res, next) {
 
   /* GET department page */
 router.get('/manageEmployee', function(req, res, next) {
- 
-  
-
-   // use mongoose model to query mongodb for all books
    user.find(function(err, users) {
-     
       if (err) {
          console.log(err);
          res.end(err);
          return;
       }
-
-
-
-      // no error so send the books to the index view
-   
       res.render('employee/manageEmployees/manageEmployeeIndex', {
          users: users,
          title: 'Users Index' , user: req.user 
       });
    });
- 
 });
 
 
 router.get('/manageEmployees/add', function(req, res, next) {
-  
-
-
- 
   department.find(function(err, departments) {
-     
       if (err) {
          console.log(err);
          res.end(err);
          return;
       }
-      // no error so send the books to the index view
       res.render('employee/manageEmployees/add', { 
          departments: departments,
          title: 'Add User',
          user: req.user
-
       });
  });
 
@@ -197,8 +165,6 @@ router.get('/manageEmployees/add', function(req, res, next) {
 
 
 router.post('/manageEmployees/add', function(req, res, next) {
-
-
   user.register(new user(
     {
        username: req.body.username,
@@ -214,10 +180,8 @@ router.post('/manageEmployees/add', function(req, res, next) {
               res.render('error'), { title: 'create new employee error'};
               return;
           }
-           res.redirect('/employeeDashboard/manageEmployee');
-       
+           res.redirect('/employeeDashboard/manageEmployee');  
     });
- 
   });
 
   router.get('/manageEmployees/delete/:_id', function(req, res, next) {
@@ -231,9 +195,7 @@ router.post('/manageEmployees/add', function(req, res, next) {
               return;
           }
            res.redirect('/employeeDashboard/manageEmployee');
-
     });
-
   });
 
   router.get('/manageEmployees/:_id', function(req, res, next) {
@@ -415,7 +377,7 @@ userCourse.create(
 
 
        res.render('employee/manageEmployees/viewemployeecertifications', {
-         user: user,
+         users: users,
          userCourses: userCourses,
          title: 'Departments Index' , user: req.user 
    });

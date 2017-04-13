@@ -5,7 +5,11 @@ $('.confirmation').on('click', function() {
 });
 
 
+function clickTable(clickedRow) {
+console.log(clickedRow.id);
+window.location.href="manageEmployees/viewEmployeeCertifications/" + clickedRow.id;
 
+}
 
 
 

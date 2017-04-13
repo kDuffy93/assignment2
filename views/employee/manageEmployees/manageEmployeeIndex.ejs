@@ -19,13 +19,12 @@
     <tr><th>First Name</th><th>surName</th><th>department</th><th>Certifications<th>Edit</th><th>Delete</th></tr>
 <!--logic to populate table -->
     <% for (var i = 0; i < users.length; i++) { %>
-        <tr id="<%= users[i]._id %>">
+        <tr onclick="clickTable(this)"  id="<%= users[i]._id %>">
             <td class="active"  ><%= users[i].firstName %></td>
             <td class="active"><%= users[i].surName %></td>
             <td class="warning" ><%= users[i].departmentname %></td>
             <td class="info">
                 <a href="manageEmployees/employeeCertifications/<%= users[i]._id %>" class="btn btn-info">Add Certificate</a>
-                <a href="manageEmployees/viewEmployeeCertifications/<%= users[i]._id %>" class="btn btn-info">view Certificates</a>
             </td>
             <td class="info"><a href="manageEmployees/<%= users[i]._id %>" class="btn btn-info">Edit</a></td>
             <td class="danger"><a href="manageEmployees/delete/<%= users[i]._id %>" class="confirmation btn btn-danger">Delete</a></td>
