@@ -17,6 +17,7 @@ var department = require ('../models/department');
 if(!req.user){
   req.session.messages =["You must be logged-in to view this page"];
   req.session.messages1 = ["please enter you're credentials below"];
+  req.session.returnURL = req.url;
    
   res.redirect('/login')
 }
@@ -140,6 +141,7 @@ router.get('/manageEmployee', function(req, res, next) {
          return;
       }
       res.render('employee/manageEmployees/manageEmployeeIndex', {
+        searchBy: "First Names",
          users: users,
          title: 'Users Index' , user: req.user 
       });
@@ -212,7 +214,7 @@ router.post('/manageEmployees/add', function(req, res, next) {
   
 
    // use mongoose to find the selected book
-   user.findById(_id, function(err, user) {
+   user.findById(_id, function(err, userInfo) {
       if (err) {
          console.log(err);
          res.render('error');
@@ -220,11 +222,10 @@ router.post('/manageEmployees/add', function(req, res, next) {
       }
      var dptName = user.departmentname;
       res.render('employee/manageEmployees/edit', {
-         user: user,
+         user: userInfo,
           departments: departments,
          title: 'Edit User',
-         dptName: dptName, user: req.user 
-
+         dptName: dptName 
       });
     });
   });
@@ -384,6 +385,21 @@ userCourse.create(
  });
 });
 });
+
+  router.get('/manageEmployees/viewEmployeeCertifications/delete/:_id/:user_id', function(req, res, next) {
+console.log(req.params);
+    let _id = req.params._id;
+    let user_id = req.params.user_id;
+  userCourse.remove({ _id: _id }, function (err, departments) {
+          if (err) 
+          {
+              console.log(err);
+              res.render('error');
+              return;
+          }
+           res.redirect('/employeeDashboard/manageEmployees/viewEmployeeCertifications/' + user_id);
+    });
+  });
 
 
    

@@ -2,15 +2,17 @@
 
 
 <div class="container-fluid" style="margin-top:50px;">
-<div id="filterDiv" class="col-md-offset-7">
+<div id="filterDiv"style="padding-top:20px;" class="col-md-offset-7">
 
-<input type="text" placeholder="Search Employees" onkeyup="filterTable()" id="filterText"> </input>
-<p> BY</p>
-<select id="sortBy"> 
-    <option value="fn"> First Name </option>
-    <option value="ln"> Last Name </option>
-    <option value="dpt"> Department </option>
+
+<label for="sortBy"> Field To Search By</label>
+<select id="sortBy" onchange="OnSelectedIndexChanged(this)"> 
+    <option value="First Names"> First Names </option>
+    <option value="Last Names"> Last Names </option>
+    <option value="Departments"> Departments </option>
     </select>
+</br>
+    <label for="filterText">Text to Search: </label> <input type="text" style="width:225px;" placeholder="Search Employee <%= searchBy %>" onkeyup="filterTable()" id="filterText"> </input>
 </div>
 <a href="manageEmployees/add" class="btn btn-success" style="margin-bottom:10px;">Add a New employee</a>
 

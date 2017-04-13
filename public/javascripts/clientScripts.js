@@ -6,9 +6,17 @@ $('.confirmation').on('click', function() {
 
 
 function clickTable(clickedRow) {
-console.log(clickedRow.id);
 window.location.href="manageEmployees/viewEmployeeCertifications/" + clickedRow.id;
+}
 
+function OnSelectedIndexChanged(finterBY)
+{
+let text = finterBY.options[finterBY.selectedIndex].value
+   console.log(text);
+
+let searchByTxtBox = document.getElementById("filterText");
+searchByTxtBox.value = "";
+searchByTxtBox.placeholder="Search Employee By " + text;
 }
 
 
@@ -23,7 +31,7 @@ function filterTable() {
 var filterByValue = finterBY.options[finterBY.selectedIndex].value;
 
 
-if(filterByValue == "fn")
+if(filterByValue == "First Names")
 {
 for (let i = 0; i < tr.length; i++) {
    let td = tr[i].getElementsByTagName("td")[0];
@@ -37,7 +45,7 @@ for (let i = 0; i < tr.length; i++) {
   }
 }
 
-if(filterByValue == "ln")
+if(filterByValue == "Last Names")
 {
     for (let i = 0; i < tr.length; i++) {
    let td = tr[i].getElementsByTagName("td")[1];
@@ -51,7 +59,7 @@ if(filterByValue == "ln")
   } 
 }
 
-if(filterByValue == "dpt")
+if(filterByValue == "Departments")
 {
     for (let i = 0; i < tr.length; i++) {
    let td = tr[i].getElementsByTagName("td")[2];

@@ -2,6 +2,9 @@
 <% include partials/header.ejs %>
 
 <main class="container">
+    <% if (returnURL.length > 0) { %>
+<input type="text" id="returnURL" hidden="true" readonly="true" value="<%= returnURL %>"><%= returnURL %><input>
+    <%  } %>
     <h1>Login</h1>
     <!--  checks the session to see if it needs to change the banner above login   -->
 <% if (messages.length > 0) { 

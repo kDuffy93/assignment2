@@ -26,8 +26,8 @@
             <td class="active"><%= userCourses[i].expiry %></td>
             
             
-            <td class="info"><a href="manageEmployees/employeeCertifications/<%= userCourses[i].userid %>" class="btn btn-info">Edit</a></td>
-            <td class="danger"><a href="manageEmployees/employeeCertifications/delete/<%= userCourses[i]._id %>" class="confirmation btn btn-danger">Delete</a></td>
+            <td class="info"><a href="/employeeDashboard/manageEmployees/employeeCertifications/<%= userCourses[i].userid %>" class="btn btn-info">Edit</a></td>
+            <td class="danger"><a href="delete/<%= userCourses[i]._id %>/<%=users._id%>" class="confirmation btn btn-danger">Delete</a></td>
           
         </tr>
     <% } %>
