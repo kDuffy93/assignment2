@@ -15,8 +15,8 @@ let text = finterBY.options[finterBY.selectedIndex].value
    console.log(text);
 
 let searchByTxtBox = document.getElementById("filterText");
-searchByTxtBox.value = "";
 searchByTxtBox.placeholder="Search Employee By " + text;
+filterTable();
 }
 
 
