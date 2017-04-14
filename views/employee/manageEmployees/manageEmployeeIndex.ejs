@@ -23,7 +23,7 @@
     <tr><th>First Name</th><th>surName</th><th>department</th><th>Certifications<th>Edit</th><th>Delete</th></tr>
 <!--logic to populate table -->
     <% for (var i = 0; i < users.length; i++) { %>
-        <tr  on-tap="clickTable(this)" onclick="clickTable(this)"  id="<%= users[i]._id %>">
+        <tr onclick="clickTable(this)"  id="<%= users[i]._id %>">
             <td class="active"  ><%= users[i].firstName %></td>
             <td class="active"><%= users[i].surName %></td>
             <td class="warning" ><%= users[i].departmentname %></td>
@@ -39,4 +39,9 @@
 </table>
 
 </div>
+<script type="text/javascript">
+$(document).on("ready","#filterTable",function(){
+  $("tr").on("tap",clickTable(this));            
+});
+</script>
 <%include ../../partials/footer.ejs%>
