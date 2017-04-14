@@ -304,13 +304,14 @@ router.post('/manageEmployees/employeeCertifications/:_id', function(req, res, n
          res.end(err);
          return;
       }
+      console.log(selectedUsersCourses.length + "   " + selectedUsersCourses);
       
  if(selectedUsersCourses.length != 0)   
  {
-
+console.log("in if");
 
 for (let i=0; i < selectedUsersCourses.length; i++) {
-
+console.log("in for");
 if(req.body.coursename == selectedUsersCourses[i].coursename)
 {
  let updatedUserCourse = new userCourse({
@@ -320,6 +321,7 @@ if(req.body.coursename == selectedUsersCourses[i].coursename)
       expiry : req.body.expiry
       
    });
+   console.log("populated new model");
  
 
    userCourse.update({ _id: selectedUsersCourses[i]._id }, updatedUserCourse,  function(err) {
@@ -328,16 +330,21 @@ if(req.body.coursename == selectedUsersCourses[i].coursename)
          res.render('error');
          return;
       }
+      console.log("after update");
      
    });
  res.redirect('/employeeDashboard/manageEmployee');
+ console.log("before return");
      return;
 }
 
 }
+ console.log("before next()");
+
  }
-else
-{
+ 
+
+
 userCourse.create(
     {
       userid: user_id,
@@ -347,8 +354,7 @@ userCourse.create(
    });
  
       res.redirect('/employeeDashboard/manageEmployee');
-     return;
-}
+
 
 
    // populate new book from the form
