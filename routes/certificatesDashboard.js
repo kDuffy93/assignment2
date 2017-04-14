@@ -7,7 +7,7 @@ let plm = require('passport-local-mongoose');
 let user = require('../models/users');
 var courseType = require ('../models/courseType');
 let course = require('../models/course');
-
+let multer = require('multer');
 //make entire view private
 router.use( function(req, res, next) {
 if(!req.user){
@@ -18,6 +18,16 @@ if(!req.user){
 next();
   });
 
+var certIcon = multer({
+ 
+  dest:  'public/images/certificateIcons',
+   filename: function (req, file, cb) {
+   
+      cb(null, raw.toString('hex') + '-' + date.now() + '.png');
+ 
+   }
+  
+});
 
 
 router.get('/', function(req, res, next) {
@@ -33,7 +43,7 @@ res.render('certificatesDashboard', { title: 'Certificates Dashboard', user: req
 router.get('/course', function(req, res, next) {
    // use mongoose model to query mongodb for all books
    course.find(function(err, courses) {
-  
+
       if (err) {
          console.log(err);
          res.end(err);
@@ -42,14 +52,14 @@ router.get('/course', function(req, res, next) {
       // no error so send the books to the index view
       res.render('certificates/course/courseIndex', {
          courses: courses,
-         title: 'courses Index' , user: req.user 
+         title: 'courses Index' , user: req.user
       });
    });
 });
 
 router.get('/course/add', function(req, res, next) {
     courseType.find(function(err, courseType) {
-     
+
       if (err) {
          console.log(err);
          res.end(err);
@@ -57,22 +67,26 @@ router.get('/course/add', function(req, res, next) {
       }
 
     res.render('certificates/course/add', {
-user: req.user, courseType : courseType ,title: 'Add course' 
+user: req.user, courseType : courseType ,title: 'Add course'
     });
     });
 });
 
 
 
-router.post('/course/add', function(req, res, next) {
+router.post('/course/add', certIcon.single("certicon",{filename:Date.now() + '.ico'}), function(req, res, next) {
+ console.log(req.file);
  
+
+
   course.create(
     {
         coursename : req.body.coursename,
-        coursetype : req.body.coursetype
+        coursetype : req.body.coursetype,
+        iconurl : req.file.filename
      }, function (err, course)
         {
-          if (err) 
+          if (err)
           {
               console.log(err);
               res.render('error');
@@ -82,13 +96,13 @@ router.post('/course/add', function(req, res, next) {
 
     });
       });
- 
+
 
   router.get('/course/delete/:_id', function(req, res, next) {
 
     let _id = req.params._id;
   course.remove({ _id: _id }, function (err, course) {
-          if (err) 
+          if (err)
           {
               console.log(err);
               res.render('error');
@@ -97,16 +111,16 @@ router.post('/course/add', function(req, res, next) {
            res.redirect('/certificatesDashboard/course');
 
     });
-  
+
   });
 
 
   router.get('/course/:_id', function(req, res, next) {
- 
+
    // grab id from the url
    let _id = req.params._id;
    courseType.find(function(err, courseTypes) {
-     
+
       if (err) {
          console.log(err);
          res.end(err);
@@ -124,16 +138,16 @@ router.post('/course/add', function(req, res, next) {
       res.render('certificates/course/edit', {
          course: course,
           courseTypes: courseTypes,
-         title: 'Edit course' ,selectedTypeName : selectedTypeName, user: req.user 
+         title: 'Edit course' ,selectedTypeName : selectedTypeName, user: req.user
       });
    });
- 
+
 });
   });
 
 
-router.post('/course/:_id', function(req, res, next) {
- 
+router.post('/course/:_id', certIcon.single("certicon"), function(req, res, next) {
+ console.log(req.file);
    // grab id from url
    let _id = req.params._id;
 
@@ -142,7 +156,8 @@ router.post('/course/:_id', function(req, res, next) {
    let courseObj = new course({
       _id: _id,
       course : req.body.course,
-      coursetype : req.body.courseTypes
+      coursetype : req.body.courseType,
+      iconurl: req.file.filename
    });
 
    course.update({ _id: _id }, courseObj,  function(err) {
@@ -153,7 +168,7 @@ router.post('/course/:_id', function(req, res, next) {
       }
       res.redirect('/certificatesDashboard/course');
    });
-  
+
 });
 
 
@@ -166,7 +181,7 @@ router.post('/course/:_id', function(req, res, next) {
 router.get('/courseType', function(req, res, next) {
    // use mongoose model to query mongodb for all books
    courseType.find(function(err, courseTypes) {
-  
+
       if (err) {
          console.log(err);
          res.end(err);
@@ -175,16 +190,16 @@ router.get('/courseType', function(req, res, next) {
       // no error so send the books to the index view
       res.render('certificates/courseType/courseTypeIndex', {
          courseTypes: courseTypes,
-         title: 'course Type Index' , user: req.user 
+         title: 'course Type Index' , user: req.user
       });
    });
 });
 
 router.get('/courseType/add', function(req, res, next) {
-   
+
 
     res.render('certificates/courseType/add', {
-user: req.user, title: 'Add course' 
+user: req.user, title: 'Add course'
     });
 
 });
@@ -197,13 +212,13 @@ user: req.user, title: 'Add course'
 
 
 router.post('/courseType/add', function(req, res, next) {
- 
+
   courseType.create(
     {
         coursetype : req.body.coursetype
      }, function (err, departments)
         {
-          if (err) 
+          if (err)
           {
               console.log(err);
               res.render('error');
@@ -218,7 +233,7 @@ router.post('/courseType/add', function(req, res, next) {
 
     let _id = req.params._id;
   courseType.remove({ _id: _id }, function (err, departments) {
-          if (err) 
+          if (err)
           {
               console.log(err);
               res.render('error');
@@ -227,13 +242,13 @@ router.post('/courseType/add', function(req, res, next) {
            res.redirect('/certificatesDashboard/courseType');
 
     });
-  
+
   });
 
- 
+
 
   router.get('/courseType/:_id', function(req, res, next) {
- 
+
    // grab id from the url
    let _id = req.params._id;
 
@@ -246,15 +261,15 @@ router.post('/courseType/add', function(req, res, next) {
       }
       res.render('certificates/courseType/edit', {
          courseTypes: courseTypes,
-         title: 'Edit course' , user: req.user 
+         title: 'Edit course' , user: req.user
       });
    });
- 
+
 });
 
 
 router.post('/courseType/:_id', function(req, res, next) {
- 
+
    // grab id from url
    let _id = req.params._id;
 
@@ -273,7 +288,7 @@ router.post('/courseType/:_id', function(req, res, next) {
       }
       res.redirect('/certificatesDashboard/courseType');
    });
-  
+
 });
 
 

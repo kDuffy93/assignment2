@@ -29,8 +29,33 @@
             <td class="warning" ><%= users[i].departmentname %></td>
             <td class="info">
                 <a href="manageEmployees/employeeCertifications/<%= users[i]._id %>" class="btn btn-info">Add Certificate</a>
+                 </br>
+              <% for (var j = 0; j < allUserCourses.length; j++) 
+                { if(((j+1)/5) == 1 ||  ((j+1)/5) == 2 || ((j+1)/5) == 3 || ((j+1)/5) == 4 || ((j+1)/5) == 5 || ((j+1)/5) == 6 || ((j+1)/5) == 7)
+                {
+%>  <%
+                }
+              
+                    if(allUserCourses[j].userid == users[i]._id ) {
+                          for(var w = 0; w < allCourses.length; w++)
+                          {
+                              if(allCourses[w].coursename == allUserCourses[j].coursename)
+                              {
+                                                               
+                              %>
+                          
+<img SRC="../../images/certificateIcons/<%= allCourses[w].iconurl %>" height="64px" width="64px" alt="<%= allUserCourses[j].coursename %>" title="<%= allUserCourses[j].coursename %>" >
+
+                     <% } 
+                           }
+                     } %>
+
+               <%  } %>
             </td>
-            <td class="info"><a href="manageEmployees/<%= users[i]._id %>" class="btn btn-info">Edit</a></td>
+            
+            <td class="info"><a href="manageEmployees/<%= users[i]._id %>" class="btn btn-info">Edit</a>
+           
+               </td>
             <td class="danger"><a href="manageEmployees/delete/<%= users[i]._id %>" class="confirmation btn btn-danger">Delete</a></td>
           
         </tr>

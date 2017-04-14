@@ -134,6 +134,20 @@ router.post('/department/:_id', function(req, res, next) {
 
   /* GET department page */
 router.get('/manageEmployee', function(req, res, next) {
+course.find(function(err, allCourses) {
+     if (err) {
+         console.log(err);
+         res.end(err);
+         return;
+      }
+
+  userCourse.find(function(err, allUserCourses) {
+     if (err) {
+         console.log(err);
+         res.end(err);
+         return;
+      }
+ 
    user.find(function(err, users) {
       if (err) {
          console.log(err);
@@ -142,11 +156,15 @@ router.get('/manageEmployee', function(req, res, next) {
       }
       res.render('employee/manageEmployees/manageEmployeeIndex', {
         searchBy: "First Names",
+        allUserCourses: allUserCourses,
+        allCourses: allCourses,
          users: users,
          title: 'Users Index' , user: req.user 
       });
    });
 });
+ });
+ });
 
 
 router.get('/manageEmployees/add', function(req, res, next) {

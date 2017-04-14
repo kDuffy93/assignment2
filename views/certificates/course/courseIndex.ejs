@@ -4,14 +4,15 @@
 
 <a href="course/add" class="btn btn-success" style="margin-bottom:10px;">Add a New Certification</a>
 <table class="table table-inverse table-hover">
-    <tr><th>Certification</th><th>Certification Type</th><th>Edit</th><th>Delete</th></tr>
+    <tr><th>Icon</th><th>Certification</th><th>Certification Type</th><th>Edit</th><th>Delete</th></tr>
  <!--  logic to populate the table   -->
     <% for (var i = 0; i < courses.length; i++) { %>
         <tr>
+            <td> <img height="64px" width="64px" src="../../images/certificateIcons/<%= courses[i].iconurl %>" /> </td>
             <td><%= courses[i].coursename %></td>
             <td><%= courses[i].coursetype %></td>
             <td><a href="course/<%= courses[i]._id %>" class="btn btn-info">Edit</a></td>
-            <td><a href="course/delete/<%= courses[i]._id %>" class="btn btn-danger confirmation">Delete</a></td>
+            <td><a  href="course/delete/<%= courses[i]._id %>" class="btn btn-danger confirmation">Delete</a></td>
         </tr>
     <% } %>
 

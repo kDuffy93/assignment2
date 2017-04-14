@@ -11,6 +11,10 @@ var courseSchema = new mongoose.Schema({
      coursetype: {
       type: String,
         required: 'Course type is missing. Please enter one.'
+    },
+    iconurl: {
+        type: String,
+        required: 'iconurl is missing. Please Upload an image.'
     }
 });
 
