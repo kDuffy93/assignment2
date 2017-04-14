@@ -1,10 +1,6 @@
 <% include ../../partials/header.ejs %>
 
-<script>
-$(document).on("pagecreate","#filterTable",function(){
-  $("tr").on("tap", clickTable(this))                     
-});
-</script>
+
 
 <div class="container-fluid" style="margin-top:50px;">
 <div id="filterDiv"style="padding-top:20px;" class="col-md-offset-7">
@@ -41,5 +37,8 @@ $(document).on("pagecreate","#filterTable",function(){
     <% } %>
 
 </table>
+<script>
+ $( "#filterTable tr" ).bind( "tap", clickTable(this) );
+</script>
 </div>
 <%include ../../partials/footer.ejs%>
