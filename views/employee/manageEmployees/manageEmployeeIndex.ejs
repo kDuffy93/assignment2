@@ -1,5 +1,10 @@
 <% include ../../partials/header.ejs %>
 
+<script>
+$(document).on("pagecreate","#filterTable",function(){
+  $("tr").on("tap", clickTable(this))                     
+});
+</script>
 
 <div class="container-fluid" style="margin-top:50px;">
 <div id="filterDiv"style="padding-top:20px;" class="col-md-offset-7">
@@ -22,7 +27,7 @@
     <tr><th>First Name</th><th>surName</th><th>department</th><th>Certifications<th>Edit</th><th>Delete</th></tr>
 <!--logic to populate table -->
     <% for (var i = 0; i < users.length; i++) { %>
-        <tr on-tap="clickTable(this)" onclick="clickTable(this)"  id="<%= users[i]._id %>">
+        <tr  onclick="clickTable(this)"  id="<%= users[i]._id %>">
             <td class="active"  ><%= users[i].firstName %></td>
             <td class="active"><%= users[i].surName %></td>
             <td class="warning" ><%= users[i].departmentname %></td>
