@@ -1,6 +1,7 @@
 body {
+
+  padding-top: 200px;
 color:slateblue;
-  padding: 55px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -13,6 +14,7 @@ a {
 }
 .navbar{
 position: left;
+
  /* padding-left: 500px; */
   background-color: skyblue;
 }

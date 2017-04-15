@@ -1,9 +1,10 @@
-body {
-  padding: 150px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: red;
+body{
+  padding:25px;
+  padding-top: 250px;
 }
-
+@-ms-viewport{
+  width: device-width;
+}
 a {
   color: #00B7FF;
 }
@@ -12,7 +13,13 @@ a {
   color: #999999;
 }
 .navbar{
-position: left;
-  padding-left: 500px;
   background-color: #052c4d;
+}
+.headerLogoImg{
+padding-right: 250px;
+}
+
+ul.li{
+  
+width:9%;
 }

@@ -20,12 +20,9 @@ file description: This file is the partial EJS file that can be required by othe
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet"
-
-  media="only screen and (max-width: 800px)" href="/public/stylesheets/mobile.css" />
-  <meta name=viewport
-  content="width=device-width, initial-scale=1.0, minimum-scale=0.5 maximum-scale=1.3">
-     <meta name="viewport" content="target-densitydpi=device-dpi">
+  
+  <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width"/>
+     
      
 
 
@@ -33,22 +30,20 @@ file description: This file is the partial EJS file that can be required by othe
   <body style="background-color:#90a4b5;">
     
   <!--   This is the main navbar at the top of every page -->
-  <nav class="navbar navbar-fixed-top"  >
-    <div style="float:left; position:relative; right:56%;">
-     
- <a  href="/"><img src="../../images/logo_western_footer.png" /> </a>
-     
-    
-   
-    </div>
-    
-    <ul class="nav navbar-nav navbar-right">
+  <nav class="navbar navbar-fixed-top">
+    <div class="row">
+  
+     <div class="col-xs-4">
+ <a class="headerLogoImg" href="/"><img src="../../images/logo_western_footer.png" /> </a>
+     </div>
+    <div class="col-xs-8 col-xs-offset-4">
+    <ul >
       <!-- show only the login link if no user is authenticated --> 
       <% if (!user) { %>
   
       
        
-      <li><a href="/login" style="position:relative; right:20px;" class="list-group-item list-group-item-action list-group-item-info">Login</a></li>
+      <li><a href="/login"  class="col-sm-3 col-xs-offset-8 list-group-item  list-group-item-action list-group-item-info">Login</a></li>
      
   </ul>
   <% }
@@ -56,17 +51,17 @@ file description: This file is the partial EJS file that can be required by othe
   else { %>
   
   
-  <li><a href="/home" style="position:relative; right:20px;" class="list-group-item list-group-item-action list-group-item-info">Dashboard</a></li>
-      <li><a href="/employeeDashboard" style="position:relative; right:20px;" class="list-group-item list-group-item-action list-group-item-info">Employee Dashboard</a></li>
-      <li><a href="/certificatesDashboard" style="position:relative; right:20px;" class="list-group-item list-group-item-action list-group-item-info">Course Dashboard</a></li>
-      <li><a href="/expiringSoon" style="position:relative; right:20px;" class="list-group-item list-group-item-action list-group-item-info">Expiring Soon</a></li>
-       <li><a href="/logout" style="position:relative; right:20px;" class="list-group-item list-group-item-action list-group-item-info">log out</a></li>
+  <li><a href="/home" style="position:relative; right:20px;" class="col col-sm-2 list-group-item list-group-item-action list-group-item-info">Dashboard</a></li>
+      <li><a href="/employeeDashboard" style="position:relative; right:20px;"   class="col col-sm-2 list-group-item list-group-item-action list-group-item-info">Employee Dashboard</a></li>
+      <li><a href="/certificatesDashboard" style="position:relative; right:20px;" class="col col-sm-2 list-group-item list-group-item-action list-group-item-info">Course Dashboard</a></li>
+      <li><a href="/expiringSoon" style="position:relative; right:20px;" class="col col-sm-2 list-group-item list-group-item-action list-group-item-info">Expiring Soon</a></li>
+       <li><a href="/logout" style="position:relative; right:20px;" class="col col-sm-2 list-group-item list-group-item-action list-group-item-info">log out</a></li>
   
   </ul>
   
   <% } %>
-
-      
+</div>
+      </div>
 
       
 
