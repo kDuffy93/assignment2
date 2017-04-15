@@ -10,7 +10,7 @@
 </div>
 <div style="float:left;" id="hideablediv" hidden="true">
 <label for="filterCategory">Search By Certificate:  </label> 
-    <input type="text" style="width:225px;" placeholder="Search Valid certificates" onkeyup="filterWithCategory()" id="filterCategory"/>
+    <input type="text" style="width:225px;" placeholder="Search Valid certificates" onkeydown="filterTable()" onkeyup="filterWithCategory()" id="filterCategory"/>
 </div>
 
 <div style="float:right;">
@@ -21,7 +21,7 @@
     <option value="Departments"> Departments </option>
     </select>
     <label for="filterText">Text to Search: </label> 
-    <input type="text" style="width:225px;" placeholder="Search Employees By <%= searchBy %>" onkeyup="filterTable()" id="filterText"/>
+    <input type="text" style="width:225px;" placeholder="Search Employees By <%= searchBy %>" onkeydown="filterTable()" onkeyup="filterTable()" id="filterText"/>
     </div>
 </div>
 <a href="manageEmployees/add" class="btn btn-success" style="margin-bottom:10px;">Add a New employee</a>

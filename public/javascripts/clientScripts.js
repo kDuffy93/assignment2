@@ -142,7 +142,48 @@ function filterWithCategory()
   else
   {
     console.log("  no text in categories! running filterTable() ")
-    filterTable();
+    if(filterByValue == "First Names")
+{
+for (let i = 0; i < tr.length; i++) {
+   let td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+else if(filterByValue == "Last Names")
+{
+    for (let i = 0; i < tr.length; i++) {
+   let td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  } 
+}
+
+else if(filterByValue == "Departments")
+{
+    for (let i = 0; i < tr.length; i++) {
+   let td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+
+}
   }
 }
 
@@ -155,9 +196,9 @@ function filterTable() {
   let finterBY = document.getElementById("sortBy");
 var filterByValue = finterBY.options[finterBY.selectedIndex].value;
 
-if(enableCertificateSearch.checked != true || (enableCertificateSearch.checked == true && filterCategory.text == ""))
+if(enableCertificateSearch.checked != true) 
 {
-  
+
 
 
 if(filterByValue == "First Names")
