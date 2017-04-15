@@ -107,7 +107,7 @@ function filterWithCategory()
                       }
                       if(filterByValue == "Departments")
                       {
-                            let td = tr[i].getElementsByTagName("td")[2];
+                            let td1 = tr[i].getElementsByTagName("td")[2];
                             if (td1) 
                             {
                                 if (td1.innerHTML.toUpperCase().indexOf(filter) > -1) 
@@ -141,13 +141,13 @@ function filterWithCategory()
   }
   else
   {
-    console.log("  no text in categories! running filterTable() ")
+    console.log("  no text in categories! running filterTable()")
     if(filterByValue == "First Names")
 {
 for (let i = 0; i < tr.length; i++) {
-   let td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+   let td3 = tr[i].getElementsByTagName("td")[0];
+    if (td3) {
+      if (td3.innerHTML.toUpperCase().indexOf(filter) > -1) {
         tr[i].style.display = "";
       } else {
         tr[i].style.display = "none";
@@ -159,9 +159,9 @@ for (let i = 0; i < tr.length; i++) {
 else if(filterByValue == "Last Names")
 {
     for (let i = 0; i < tr.length; i++) {
-   let td = tr[i].getElementsByTagName("td")[1];
-    if (td) {
-      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+   let td3 = tr[i].getElementsByTagName("td")[1];
+    if (td3) {
+      if (td3.innerHTML.toUpperCase().indexOf(filter) > -1) {
         tr[i].style.display = "";
       } else {
         tr[i].style.display = "none";
@@ -173,8 +173,8 @@ else if(filterByValue == "Last Names")
 else if(filterByValue == "Departments")
 {
     for (let i = 0; i < tr.length; i++) {
-   let td = tr[i].getElementsByTagName("td")[2];
-    if (td) {
+   let td3 = tr[i].getElementsByTagName("td")[2];
+    if (td3) {
       if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
         tr[i].style.display = "";
       } else {
@@ -198,9 +198,7 @@ var filterByValue = finterBY.options[finterBY.selectedIndex].value;
 
 if(enableCertificateSearch.checked != true) 
 {
-
-
-
+  console.log("filterTable() if checked != true");
 if(filterByValue == "First Names")
 {
 for (let i = 0; i < tr.length; i++) {
@@ -254,6 +252,7 @@ else
   
 }
 else{
+   console.log("Checkbox is checked, using filter with category");
   filterWithCategory();
 }
 
