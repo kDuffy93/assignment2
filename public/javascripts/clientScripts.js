@@ -30,14 +30,14 @@ function toggleCategorySearch(checkboxObj)
   {
     console.log("in if");
  document.getElementById("hideablediv").style.display = 'block';
-
+filterWithCategory();
 
   }
 else{
       console.log("in else");
 
   document.getElementById("hideablediv").style.display = 'none';
-   
+   filterTable();
 
 }
  
