@@ -17,6 +17,7 @@ var department = require ('../models/department');
 if(!req.user){
   req.session.messages =["You must be logged-in to view this page"];
   req.session.messages1 = ["please enter you're credentials below"];
+   req.session.returnURL = [];
   req.session.returnURL = req.url;
    
   res.redirect('/login')

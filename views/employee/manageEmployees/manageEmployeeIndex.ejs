@@ -3,18 +3,26 @@
 
 
 <div class="container-fluid" style="margin-top:50px;">
-<div id="filterDiv"style="padding-top:20px;" class="col-md-offset-7">
+<div id="filterDiv"style="padding-top:20px;" class="col-md-offset-4">
+    <div style="float:top;">
+    <label for="filterCategory">Enable/Disable Sort By Catefory</label> 
+    <input type="checkbox" id="enableCertificateSearch" onchange="toggleCategorySearch(this)" name="enableCertificateSearch"/> 
+</div>
+<div style="float:left;" id="hideablediv" hidden="true">
+<label for="filterCategory">Search By Certificate:  </label> 
+    <input type="text" style="width:225px;" placeholder="Search Valid certificates" onkeyup="filterWithCategory()" id="filterCategory"/>
+</div>
 
-
+<div style="float:right;">
 <label for="sortBy"> Field To Search By</label>
 <select id="sortBy" onchange="OnSelectedIndexChanged(this)"> 
     <option value="First Names"> First Names </option>
     <option value="Last Names"> Last Names </option>
     <option value="Departments"> Departments </option>
-  
     </select>
-</br>
-    <label for="filterText">Text to Search: </label> <input type="text" style="width:225px;" placeholder="Search Employees By <%= searchBy %>" onkeyup="filterTable()" id="filterText"> </input>
+    <label for="filterText">Text to Search: </label> 
+    <input type="text" style="width:225px;" placeholder="Search Employees By <%= searchBy %>" onkeyup="filterTable()" id="filterText"/>
+    </div>
 </div>
 <a href="manageEmployees/add" class="btn btn-success" style="margin-bottom:10px;">Add a New employee</a>
 
@@ -23,7 +31,7 @@
     <tr><th>First Name</th><th>surName</th><th>department</th><th>Certifications<th>Edit</th><th>Delete</th></tr>
 <!--logic to populate table -->
     <% for (var i = 0; i < users.length; i++) { %>
-        <tr onclick="clickTable(this)"  id="<%= users[i]._id %>">
+        <tr on-touch="clickTable(this)" onclick="clickTable(this)"  id="<%= users[i]._id %>">
             <td class="active"  ><%= users[i].firstName %></td>
             <td class="active"><%= users[i].surName %></td>
             <td class="warning" ><%= users[i].departmentname %></td>
