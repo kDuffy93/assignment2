@@ -75,7 +75,7 @@ user: req.user, courseType : courseType ,title: 'Add course'
 
 
 
-router.post('/course/add', certIcon.single("certicon",{filename:Date.now() + '.ico'}), function(req, res, next) {
+router.post('/course/add', certIcon.single("certicon"), function(req, res, next) {
  console.log(req.file);
  
 
@@ -151,6 +151,28 @@ router.post('/course/:_id', certIcon.single("certicon"), function(req, res, next
  console.log(req.file);
    // grab id from url
    let _id = req.params._id;
+ var url;
+     if(req.file == null)
+     {
+       console.log("the file name is NULL - using old url!");
+url = course.findById(_id, function(err, course) {
+      if (err) {
+         console.log(err);
+         res.render('error');
+         return;
+      }
+      console.log (course.url);
+      return course.url;
+    });
+    
+
+     }
+     else
+     {
+       console.log("Weve got a file!  - Updating url!");
+url = req.file.filename;
+     }
+   
 
 
    // populate new book from the form
@@ -158,7 +180,7 @@ router.post('/course/:_id', certIcon.single("certicon"), function(req, res, next
       _id: _id,
       course : req.body.course,
       coursetype : req.body.courseType,
-      iconurl: req.file.filename
+      iconurl: url
    });
 
    course.update({ _id: _id }, courseObj,  function(err) {

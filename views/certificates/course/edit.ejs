@@ -4,9 +4,9 @@
 
 <h1>Edit Existing Course</h1>
 
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <div class="form-group">
-        <label for="course" class="col-sm-2 control-label">course Type: </label>
+        <label for="course" class="col-sm-2 control-label">course Name: </label>
         <input name="course" id="course" required value="<%= course.coursename %>" />
     </div>
 
@@ -33,6 +33,10 @@
  
  </select>
 </div>
+<div class="form-group"> 
+<label for="certicon" class="col-sm-2 control-label">Choose an Icon for this certification</label>
+         <input id="certicon" type="file" name="certicon" accept="image/*">
+  </div>
 
 
     <button class="btn btn-success col-sm-offset-2">Save</button>
