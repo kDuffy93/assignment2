@@ -42,6 +42,52 @@ else{
 }
  
 }
+
+function ddl()
+{
+  console.log("in filterDDL");
+
+  let input = document.getElementById("filterddl");
+  let filter = input.value.toUpperCase();
+  let ddl = document.getElementById("coursename");
+  console.log(filter);
+if(filter == "")
+{
+  console.log("filter is blank, displaying all")
+    for (let i = 0; i < ddl.options.length; i++) {
+      var ifCount = 1;
+    ddl.options[i].style.display = "";
+    if(ifCount == 1)
+    {
+      console.log("setting selected index");
+          ddl.options[i].selected = true;
+    }
+    ifCount++;
+  }
+}
+else{
+
+
+   for (let i = 0; i < ddl.options.length; i++) {
+     var ifCount = 0;
+  // let option = ddl.options[i].getElementsByTagName("option");
+      if (ddl.options[i].value.toUpperCase().indexOf(filter) > -1) {
+        console.log(ddl.options[i].value + "--- i contain " + filter+ " so im being displayed from the if");
+        ifCount++;
+        if(ifCount == 1)
+        {
+          console.log("setting selected index");
+          ddl.options[i].selected = true;
+        }
+     ddl.options[i].style.display = "";
+      } else {
+        console.log (ddl.options[i].value +"--- i dont.. hiding");
+        ddl.options[i].style.display = "none";
+      }
+    }
+}
+}
+
 function filterWithCategory()
 {
   let input = document.getElementById("filterText");

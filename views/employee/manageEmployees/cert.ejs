@@ -1,4 +1,5 @@
 <% include ../../partials/header.ejs %>
+
 <main class="container">
    
 <h1>Add a new employee Certificate</h1>
@@ -25,6 +26,9 @@
        </option>
     <% } %>
         </select>
+
+        <label for="filterddl">Search By Certificate:  </label> 
+    <input type="text" style="width:225px;" placeholder="Filter Certificates Dropdown" onkeyup="ddl()" onchange="ddl()" onkeypress="ddl()" oninput="ddl()" onkeydown="ddl()" id="filterddl"/>
          
    </div>
 
