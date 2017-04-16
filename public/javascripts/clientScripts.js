@@ -29,14 +29,11 @@ function toggleCategorySearch(checkboxObj)
   if(checkboxObj.checked == true)
   {
     console.log("in if");
- document.getElementById("hideablediv").style.display = 'block';
 filterWithCategory();
 
   }
 else{
       console.log("in else");
-
-  document.getElementById("hideablediv").style.display = 'none';
    filterTable();
 
 }
@@ -96,10 +93,11 @@ function filterWithCategory()
   let tr = table.getElementsByTagName("tr");
   let finterBY = document.getElementById("sortBy");
   let categorySearchText = document.getElementById("filterCategory");
+  let chk = document.getElementById("enableCertificateSearch");
   let filterCategory = categorySearchText.value.toUpperCase();
   var filterByValue = finterBY.options[finterBY.selectedIndex].value;
 
-  if(filterCategory != "")
+  if(filterCategory != "" && chk.checked != false)
   {
     for (let i = 0; i < tr.length; i++) 
     {
@@ -187,7 +185,7 @@ function filterWithCategory()
   }
   else
   {
-    console.log("  no text in categories! running filterTable()")
+    console.log("  no text in categories! running filterTable scripts")
     if(filterByValue == "First Names")
 {
 for (let i = 0; i < tr.length; i++) {
