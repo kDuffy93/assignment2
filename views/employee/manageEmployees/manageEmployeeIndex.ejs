@@ -1,12 +1,12 @@
 <% include ../../partials/header.ejs %>
 
 
-
 <div class="container-fluid" style="margin-top:50px;">
 <div id="filterDiv"style="padding-top:20px;" class="col-md-offset-4">
     <div style="float:top;">
     <label for="filterCategory">Enable/Disable Search By Certificate</label> 
-    <input type="checkbox" id="enableCertificateSearch" onchange="toggleCategorySearch(this)" name="enableCertificateSearch"/> 
+    <input type="button" id="btn1" onclick="toggleCategorySearch(this)" value="Show/hide category textbox"/>
+    <input type="checkbox" id="enableCertificateSearch" onselect="toggleCategorySearch(this)" onclick="toggleCategorySearch(this)" onchange="toggleCategorySearch(this)" name="enableCertificateSearch"/> 
 </div>
 <div style="float:left;" id="hideablediv" hidden="true">
 <label for="filterCategory">Search By Certificate:  </label> 
@@ -78,5 +78,9 @@
 $(document).on("ready","#filterTable",function(){
   $("tr").on("tap",clickTable(this));            
 });
+</script>
+<script type="text/javascript">
+let chk = document.getElementById("#enableCertificateSearch");
+$(document).on('change','#btn1', toggleCategorySearch(chk));
 </script>
 <%include ../../partials/footer.ejs%>

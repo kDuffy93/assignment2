@@ -1,4 +1,7 @@
 <% include ../../partials/header.ejs %>
+<script type="text/javascript">
+$(document).on('change','#filterddl', toggleCategorySearch(this));
+</script>
 
 <main class="container">
    
@@ -28,8 +31,8 @@
         </select>
 
         <label for="filterddl">Search By Certificate:  </label> 
-    <input type="text" style="width:225px;" placeholder="Filter Certificates Dropdown" onkeyup="ddl()" onchange="ddl()" onkeypress="ddl()" oninput="ddl()" onkeydown="ddl()" id="filterddl"/>
-         
+    <input type="text" style="width:225px;" placeholder="Filter Certificates Dropdown" onforminput="ddl()" onformchange="ddl()" onsubmit="ddl()" onkeyup="ddl()" onchange="ddl()" onkeypress="ddl()" oninput="ddl()" onkeydown="ddl()" id="filterddl"/>
+         <input type="button" onclick="ddl()" value="Click to apply filter"/>
    </div>
 
     <div class="form-group">
