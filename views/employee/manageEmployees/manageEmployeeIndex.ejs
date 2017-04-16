@@ -5,7 +5,7 @@
 <div class="container-fluid" style="margin-top:50px;">
 <div id="filterDiv"style="padding-top:20px;" class="col-md-offset-4">
     <div style="float:top;">
-    <label for="filterCategory">Enable/Disable Sort By Catefory</label> 
+    <label for="filterCategory">Enable/Disable Search By Certificate</label> 
     <input type="checkbox" id="enableCertificateSearch" onchange="toggleCategorySearch(this)" name="enableCertificateSearch"/> 
 </div>
 <div style="float:left;" id="hideablediv" hidden="true">
@@ -28,7 +28,7 @@
 
 
 <table class="table table-hover table-responsive table-bordered" id="filterTable">
-    <tr><th>First Name</th><th>surName</th><th>department</th><th>Certifications<th>Edit</th><th>Delete</th></tr>
+    <tr><th>First Name</th><th>Last Name</th><th>department</th><th>Certifications<th>Edit</th><th>Delete</th></tr>
 <!--logic to populate table -->
     <% for (var i = 0; i < users.length; i++) { %>
         <tr on-touch="clickTable(this)" onclick="clickTable(this)"  id="<%= users[i]._id %>">
@@ -36,7 +36,7 @@
             <td class="active"><%= users[i].surName %></td>
             <td class="warning" ><%= users[i].departmentname %></td>
             <td class="info">
-                <a href="manageEmployees/employeeCertifications/<%= users[i]._id %>" class="btn btn-info">Add Certificate</a>
+                <a href="manageEmployees/employeeCertifications/<%= users[i]._id %>" class="btn btn-info">Add New Certificate</a>
                  </br>
               <% for (var j = 0; j < allUserCourses.length; j++) 
                 { 

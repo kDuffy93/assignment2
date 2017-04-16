@@ -2,15 +2,15 @@
 
 <main class="container">
 
-<h1>Add a new course</h1>
+<h1>Add a New Certification</h1>
 
 <form method="post" enctype="multipart/form-data">
     <div class="form-group">
-        <label for="coursename" class="col-sm-2 control-label">Course Name: </label>
+        <label for="coursename" class=" control-label">Certification Name: </label>
         <input name="coursename" id="coursename" required />
     </div>
     <div class="form-group">
-     <label for="coursetype" class="col-sm-2 control-label">Course Type: </label>
+     <label for="coursetype" class=" control-label">Certification Type: </label>
     <select name="coursetype" id="coursetype">
          <!--  logic to populate the select dropdown   -->
 <% for (var i = 0; i < courseType.length; i++) { %>
@@ -21,7 +21,7 @@
         </select>
          </div>
 <div class="form-group"> 
-<label for="certicon" class="col-sm-2 control-label">Choose an Icon for this certification</label>
+<label for="certicon" class=" control-label">Choose an icon for this Certification</label>
          <input id="certicon" type="file" name="certicon" accept="image/*">
   </div>
     <button class="btn btn-success col-sm-offset-2">Save</button>
