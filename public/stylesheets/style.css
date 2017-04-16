@@ -1,6 +1,7 @@
 body{
-  padding:25px;
-  padding-top: 250px;
+  padding:10px;
+  padding-top: 150px;
+  padding-bottom: 200px;
 }
 @-ms-viewport{
   width: device-width;
@@ -15,11 +16,12 @@ a {
 .navbar{
   background-color: #052c4d;
 }
-.headerLogoImg{
-padding-right: 250px;
+#footer{
+    position:fixed;
+    height:50px;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    margin-bottom:0px;
 }
 
-ul.li{
-  
-width:9%;
-}
