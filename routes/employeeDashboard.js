@@ -186,9 +186,10 @@ router.get('/manageEmployees/add', function(req, res, next) {
 
 
 router.post('/manageEmployees/add', function(req, res, next) {
+  let lowerusername = req.body.username.toLowerCase();
   user.register(new user(
     {
-       username: req.body.username,
+       username: lowerusername,
         firstName : req.body.firstName,
         surName : req.body.surName,
         departmentname :  req.body.departmentname,
@@ -259,13 +260,13 @@ router.post('/manageEmployees/:_id', function(req, res, next) {
 
    // grab id from url
    let _id = req.params._id;
-
+   let lowerusername = req.body.username.toLowerCase();
 
    // populate new book from the form
    let User = new user({
-   
+
       _id: _id,
-      username: req.body.username,
+      username: lowerusername,
       firstName : req.body.firstName,
       surName : req.body.surName,
       departmentname : req.body.departmentname,

@@ -19,7 +19,18 @@ res.render('home', { title: 'Western Certificates Home',
 user: req.user}); 
 });
 
+function usernameToLowerCase(req, res, next){
+  if(req.body.username != undefined)
+  {
 
+  
+    req.body.username = req.body.username.toLowerCase();
+    next();
+  }
+  else{
+    next();
+  }
+}
 /* GET login */
 router.get('/login', function(req, res, next) {
 
@@ -43,7 +54,7 @@ router.get('/login', function(req, res, next) {
 
 
 // post @ login
-router.post('/login', /* function(req, res, next) {
+router.post('/login',usernameToLowerCase, /* function(req, res, next) {
   returnURL = req.body.returnURL;
  console.log(returnURL+ "from post");
 if(returnURL)
