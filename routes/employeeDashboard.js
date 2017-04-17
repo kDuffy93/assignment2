@@ -271,12 +271,22 @@ router.post('/manageEmployees/:_id', function(req, res, next) {
       surName : req.body.surName,
       departmentname : req.body.departmentname,
         email: req.body.email,
-        phonenumber: req.body.phonenumber
-      
+        phonenumber: req.body.phonenumber,
+      password: req.body.password   
    });
- 
+   
+if(req.body.password != "")
+{
+     if(req.body.password == req.body.confirm)
+   {
 
    user.update({ _id: _id }, User,  function(err) {
+     
+
+
+   
+   
+ 
       if (err) {
          console.log(err);
          res.render('error');
@@ -284,7 +294,8 @@ router.post('/manageEmployees/:_id', function(req, res, next) {
       }
       res.redirect('/employeeDashboard/manageEmployee');
    });
- 
+  }
+}
 });
 //------------------------------for employee Certificates------------------------------------------------
 router.get('/manageEmployees/employeeCertifications/:_id', function(req, res, next) {

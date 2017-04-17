@@ -2,26 +2,27 @@
 
 <main class="container">
 
-<h1>Add a New Employee</h1>
 
-<form method="post">
-    <div class="form-group">
-        <label for="username" class="col-sm-2 control-label">Worker Id Number: </label>
+
+<form method="post" class="col col-xs-10 col-xs-offset-2">
+    <h1>Add a New Employee</h1>
+    <div class="form-group row">
+        <label for="username" class="col-sm-2 control-label">Worker ID Number: </label>
         <input name="username" id="username" required />
     </div>
-    <div class="form-group">
+    <div class="form-group row">
         <label for="firstName" class="col-sm-2 control-label">First Name: </label>
         <input name="firstName" id="firstName" required />
     </div>
-    <div class="form-group">
+    <div class="form-group row">
         <label for="surName" class="col-sm-2 control-label">Last Name: </label>
         <input name="surName" id="surName" required />
     </div>
 
-   <div class="form-group">
-        <label for="departmentname" class="col-sm-2 control-label">Department: </label>
+   <div class="form-group row">
+        <label style="margin-left:-25px; margin-right:25px;" for="departmentname" class="col-sm-2 control-label">Department: </label>
          <!--  logic to populate the select dropdown   -->
-        <select name="departmentname" id="departmentname">
+        <select  name="departmentname" id="departmentname">
 <% for (var i = 0; i < departments.length; i++) { %>
      <option class="list-group-item list-group-item-action" value="<%= departments[i].departmentname%>">
             <%= departments[i].departmentname %>
@@ -30,19 +31,19 @@
         </select>
          
    </div>
-   <div class="form-group">
+   <div class="form-group row">
             <label for="email" class="col-sm-2 control-label">Email: </label>
             <input name="email" id="email"  type="email"/>
         </div>
-         <div class="form-group">
+         <div class="form-group row">
             <label for="phonenumber" class="col-sm-2 control-label">Phone Number: </label>
             <input name="phonenumber" id="phonenumber"  type="tel"/>
         </div>
-        <div class="form-group">
+        <div class="form-group row">
             <label for="password" class="col-sm-2 control-label">Password: </label>
             <input name="password" id="password" type="password" required />
         </div>
-            <div class="form-group">
+            <div class="form-group row">
             <label for="confirm" class="col-sm-2 control-label">Re-Type Password: </label>
             <input name="confirm" id="confirm" type="password" required />
             </div>

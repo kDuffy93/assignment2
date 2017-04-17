@@ -32,13 +32,13 @@ else { %>
 <% } %>
 <!--  login form    -->
     <form method="post">
-        <div class="form-group" >
-            <label style="margin-top:20px;margin-bottom:10px;" for="username" class="col-xs-3 col-xs-offset-5 control-label">E-mail</label>
-            <input style="max-width:450px;" style="margin-bottom:10px;" class="col-xs-10 col-xs-offset-1" name="username" id="username" required />
+        <div class="form-group row" >
+            <label for="username" class="col-xs-3 col control-label">Worker ID Number:</label>
+            <input style="max-width:450px;" style="margin-bottom:10px;" class="col-xs-9" name="username" id="username" required />
         </div>
-        <div class="form-group" >
-            <label style="margin-top:20px;margin-bottom:10px;"  for="password" class="col-xs-3 col-xs-offset-5 control-label">Password:</label>
-            <input style="max-width:450px;" class="col-xs-10 col-xs-offset-1" name="password" id="password" type="password" required />
+        <div class="form-group row" >
+            <label   for="password" class="col-xs-3 control-label">Password:</label>
+            <input style="max-width:450px;" class="col-xs-9" name="password" id="password" type="password" required />
             <button style="max-width:450px; margin-top:20px;" class="col-xs-4 col-xs-offset-4 btn btn-success">Login</button>
         </div>
         
