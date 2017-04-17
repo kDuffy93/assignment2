@@ -7,7 +7,7 @@ var department = require ('../models/department');
 var userSchema = new mongoose.Schema({
     firstName: {
         type: String,
-  required: 'Employee surname is missing. Please enter one now.'
+  required: 'Employee First Name is missing. Please enter one now.'
     },
     surName: {
         type: String,
@@ -15,6 +15,12 @@ var userSchema = new mongoose.Schema({
     },
     departmentname: {
       type: mongoose.Schema.Types.Object, ref: 'department'
+    },
+    email: {
+      type: String
+    },
+    phonenumber: {
+    type: String
     }
 });  
 userSchema.plugin(plm);

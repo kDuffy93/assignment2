@@ -191,7 +191,9 @@ router.post('/manageEmployees/add', function(req, res, next) {
        username: req.body.username,
         firstName : req.body.firstName,
         surName : req.body.surName,
-        departmentname :  req.body.departmentname
+        departmentname :  req.body.departmentname,
+        email: req.body.email,
+        phonenumber: req.body.phonenumber
      }),
      req.body.password, function (err, departments)
         {
@@ -266,7 +268,9 @@ router.post('/manageEmployees/:_id', function(req, res, next) {
       username: req.body.username,
       firstName : req.body.firstName,
       surName : req.body.surName,
-      departmentname : req.body.departmentname
+      departmentname : req.body.departmentname,
+        email: req.body.email,
+        phonenumber: req.body.phonenumber
       
    });
  
