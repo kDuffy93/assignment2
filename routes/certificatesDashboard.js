@@ -22,10 +22,7 @@ next();
 var certIcon = multer({
  
   dest:  'public/images/certificateIcons',
-   filename:  originalname + '-' + date.now() + '.png'
- 
-   
-  
+   filename:  originalname + '-' + date.now() + '.png';
 });
 
 
