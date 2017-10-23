@@ -23,8 +23,8 @@ var certIcon = multer({
  
   dest:  'public/images/certificateIcons',
    filename: function (req, file, cb) {
-   
-      cb(null, raw.toString('hex') + '-' + date.now() + '.png');
+   console.log('inside filename cb');
+      cb(null, originalname + '-' + date.now() + '.png');
  
    }
   
