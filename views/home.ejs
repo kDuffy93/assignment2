@@ -2,11 +2,11 @@
 <% include ./partials/header.ejs %>
 <!-- display the proper home page > user authenticated / no user --> 
  <% if (!user) { %>
-<h1> Welcome to the Western Certifications App<h1>
+<h1> Welcome to the Township of Ramara Certifications App<h1>
     <h2> Head over to the <a href="/login"> login </a> page to get started</h2>
 <% } 
 else { %>
-<h1> Hi <%= user.firstName %>, Welcome to the Western Certifications App<h1>
+<h1> Hi <%= user.firstName %>, Welcome to the Township of Ramara Certifications App<h1>
         <h2> Head over to the <a href="/home"> dashboard </a> to get started</h2>
 <% } %>
 <!-- includes the partial file footer.ejs --> 
