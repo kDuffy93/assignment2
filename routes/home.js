@@ -15,7 +15,7 @@ let localStrategy = require('passport-local').Strategy;
 router.get('/',   function(req, res, next) {
   
 
-res.render('home', { title: 'Western Certificates Home',
+res.render('home', { title: 'Ramara Certificates Home',
 user: req.user}); 
 });
 
