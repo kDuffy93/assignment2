@@ -8,7 +8,7 @@
  <!--  logic to populate the table   -->
     <% for (var i = 0; i < courses.length; i++) { %>
         <tr>
-            <td> <img height="64px" width="64px" src="../../images/certificateIcons/<%= courses[i].iconurl %>" /> </td>
+            <td> <img height="64px" width="64px" src="../../public/images/certificateIcons/<%= courses[i].iconurl %>" /> </td>
             <td><%= courses[i].coursename %></td>
             <td><%= courses[i].coursetype %></td>
             <td><a href="course/<%= courses[i]._id %>" class="btn btn-info">Edit</a></td>

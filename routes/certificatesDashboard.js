@@ -11,7 +11,7 @@ let multer = require('multer');
 //make entire view private
 router.use( function(req, res, next) {
 if(!req.user){
-  
+
   req.session.messages =["You must be logged-in to view this page"];
   req.session.messages1 = ["please enter you're credentials below"];
   res.redirect('/login')
@@ -20,8 +20,8 @@ next();
   });
 
 var certIcon = multer({
- 
-  dest:  'public/images/certificateIcons',
+
+  dest:  'public/public/images/certificateIcons',
    filename: function (req, file, cb) {
     cb(null, file.fieldname + '-' + Date.now())
   }
@@ -75,7 +75,7 @@ user: req.user, courseType : courseType ,title: 'Add course'
 
 router.post('/course/add', certIcon.single("certicon"), function(req, res, next) {
  console.log(req.file);
- 
+
 
 
   course.create(
@@ -162,7 +162,7 @@ url = course.findById(_id, function(err, course) {
       console.log (course.url);
       return course.url;
     });
-    
+
 
      }
      else
@@ -170,7 +170,7 @@ url = course.findById(_id, function(err, course) {
        console.log("Weve got a file!  - Updating url!");
 url = req.file.filename;
      }
-   
+
 
 
    // populate new book from the form
