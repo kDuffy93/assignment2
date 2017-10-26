@@ -7,15 +7,15 @@
     <tr><th>Icon</th><th>Certification</th><th>Certification Type</th><th>Edit</th><th>Delete</th></tr>
  <!--  logic to populate the table   -->
     <% for (var i = 0; i < courses.length; i++) { %>
-        <tr>
-            <td> <img height="64px" width="64px" src="../../public/images/certificateIcons/<%= courses[i].iconurl %>" /> </td>
+
+
+            <td> <img height="64px" width="64px" src="/static/<%= courses[i].iconurl %>" /> </td>
             <td><%= courses[i].coursename %></td>
             <td><%= courses[i].coursetype %></td>
             <td><a href="course/<%= courses[i]._id %>" class="btn btn-info">Edit</a></td>
             <td><a  href="course/delete/<%= courses[i]._id %>" class="btn btn-danger confirmation">Delete</a></td>
         </tr>
     <% } %>
-
 </table>
 </div>
 <%include ../../partials/footer.ejs%>

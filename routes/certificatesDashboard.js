@@ -21,7 +21,7 @@ next();
 
 var certIcon = multer({
 
-  dest:  'public/public/images/certificateIcons',
+  dest:  'certicons',
    filename: function (req, file, cb) {
     cb(null, file.fieldname + '-' + Date.now())
   }
