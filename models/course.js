@@ -15,6 +15,9 @@ var courseSchema = new mongoose.Schema({
     iconurl: {
         type: String,
         required: 'iconurl is missing. Please Upload an image.'
+    },
+    expires: {
+        type: Boolean,
     }
 });
 
