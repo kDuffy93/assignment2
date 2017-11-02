@@ -4,23 +4,23 @@
 <div class="container-fluid" style="margin-top:50px;">
 <div id="filterDiv"style="padding-top:20px;" class="col-md-offset-4">
     <div style="float:top;">
-    <label for="filterCategory">Enable/Disable Search By Certificate</label> 
-    
-    <input type="checkbox" id="enableCertificateSearch" onselect="toggleCategorySearch(this)" onclick="toggleCategorySearch(this)" onchange="toggleCategorySearch(this)" name="enableCertificateSearch"/> 
+    <label for="filterCategory">Enable/Disable Search By Certificate</label>
+
+    <input type="checkbox" id="enableCertificateSearch" onselect="toggleCategorySearch(this)" onclick="toggleCategorySearch(this)" onchange="toggleCategorySearch(this)" name="enableCertificateSearch"/>
 </div>
 <div style="float:left;" id="hideablediv">
-<label for="filterCategory">Search By Certificate:  </label> 
+<label for="filterCategory">Search By Certificate:  </label>
     <input type="text" style="width:225px;" placeholder="Search Valid certificates" onkeydown="filterTable()" onkeyup="filterWithCategory()" id="filterCategory"/>
 </div>
 
 <div style="float:right;">
 <label for="sortBy"> Field To Search By</label>
-<select id="sortBy" onchange="OnSelectedIndexChanged(this)"> 
+<select id="sortBy" onchange="OnSelectedIndexChanged(this)">
     <option value="First Names"> First Names </option>
     <option value="Last Names"> Last Names </option>
     <option value="Departments"> Departments </option>
     </select>
-    <label for="filterText">Text to Search: </label> 
+    <label for="filterText">Text to Search: </label>
     <input type="text" style="width:225px;" placeholder="Search Employees By <%= searchBy %>" onkeydown="filterTable()" onkeyup="filterTable()" id="filterText"/>
     </div>
 </div>
@@ -38,36 +38,36 @@
             <td class="info">
                 <a href="manageEmployees/employeeCertifications/<%= users[i]._id %>" class="btn btn-info">Add New Certificate</a>
                  </br>
-              <% for (var j = 0; j < allUserCourses.length; j++) 
-                { 
+              <% for (var j = 0; j < allUserCourses.length; j++)
+                {
                     if(((j-1)/10) === 1 ||  ((j)/10) === 2 || ((j)/10) === 3 || ((j)/10) === 4 || ((j)/10) === 5 || ((j)/10) === 6 || ((j)/10) === 7)
                 {
 %> <!--</br>--> <%
                 }
-              
+
                     if(allUserCourses[j].userid == users[i]._id ) {
                           for(var w = 0; w < allCourses.length; w++)
                           {
                               if(allCourses[w].coursename == allUserCourses[j].coursename)
                               {
-                                                               
-                              %>
-                          
-<img SRC="../../images/certificateIcons/<%= allCourses[w].iconurl %>" height="40px" width="40px" alt="<%= allUserCourses[j].coursename %>" title="<%= allUserCourses[j].coursename %>" >
 
-                     <% } 
+                              %>
+
+<img SRC="/static/<%= allCourses[w].iconurl %>" height="40px" width="40px" alt="<%= allUserCourses[j].coursename %>" title="<%= allUserCourses[j].coursename %>" >
+
+                     <% }
                            }
                      } %>
 
                <%  }
       %>
             </td>
-            
+
             <td class="info"><a href="manageEmployees/<%= users[i]._id %>" class="btn btn-info">Edit</a>
-           
+
                </td>
             <td class="danger"><a href="manageEmployees/delete/<%= users[i]._id %>" class="confirmation btn btn-danger">Delete</a></td>
-          
+
         </tr>
     <% } %>
 
@@ -76,7 +76,7 @@
 </div>
 <script type="text/javascript">
 $(document).on("ready","#filterTable",function(){
-  $("tr").on("tap",clickTable(this));            
+  $("tr").on("tap",clickTable(this));
 });
 </script>
 
