@@ -74,15 +74,25 @@ user: req.user, courseType : courseType ,title: 'Add course'
 
 
 router.post('/course/add', certIcon.single("certicon"), function(req, res, next) {
- console.log(req.file);
 
-
+var expiresText;
+if(req.body.expires = "on")
+{
+  expiresText = "on";
+}
+else if(req.body.expires = undefined)
+{
+  expiresText = "undefined";
+}
+console.log(req.body.chkbox.checked );
 
   course.create(
     {
         coursename : req.body.coursename,
         coursetype : req.body.coursetype,
+        expires: expiresText,
         iconurl : req.file.filename
+
      }, function (err, course)
         {
           if (err)
@@ -134,9 +144,11 @@ router.post('/course/add', certIcon.single("certicon"), function(req, res, next)
          return;
       }
       var selectedTypeName = course.courseType;
+      var expires = course.expires;
       res.render('certificates/course/edit', {
          course: course,
           courseTypes: courseTypes,
+          expires: expires,
          title: 'Edit course' ,selectedTypeName : selectedTypeName, user: req.user
       });
    });
@@ -178,6 +190,7 @@ url = req.file.filename;
       _id: _id,
       course : req.body.course,
       coursetype : req.body.courseType,
+      expires: req.body.expires,
       iconurl: url
    });
 

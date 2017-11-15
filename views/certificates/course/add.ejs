@@ -10,6 +10,10 @@
         <input name="coursename" id="coursename" required />
     </div>
     <div class="form-group">
+        <label for="expires" class=" control-label">expires? </label>
+        <input type="checkbox" name="expires" id="expires" />
+    </div>
+    <div class="form-group">
      <label for="coursetype" class=" control-label">Certification Type: </label>
     <select name="coursetype" id="coursetype">
          <!--  logic to populate the select dropdown   -->
@@ -20,7 +24,7 @@
     <% } %>
         </select>
          </div>
-<div class="form-group"> 
+<div class="form-group">
 <label for="certicon" class=" control-label">Choose an icon for this Certification</label>
          <input id="certicon" type="file" name="certicon" accept="image/*">
   </div>
