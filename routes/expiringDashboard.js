@@ -59,6 +59,9 @@ router.get('/date', function(req, res, next) {
 
 router.get('/course', function(req, res, next) {
 
+	console.log(req.query);
+	var daysToAdd = Number(req.query.days)
+
 	 course.find(function(err, courses) {
 			if (err) {
 				 console.log(err);
@@ -81,7 +84,10 @@ router.get('/course', function(req, res, next) {
 						}
 
 						let now =   new Date();
-let curdate = date.addMonths(now, 3);
+						console.log(daysToAdd);
+						console.log(now);
+let curdate = date.addDays(now, daysToAdd)
+console.log(curdate);
 
 
 
@@ -92,6 +98,7 @@ console.log('curdate:' + now);
 				 allUserCourses: allUserCourses,
 				 curdate: curdate,
 				 now: now,
+				 days: daysToAdd,
 				 title: 'Employee certificates Expiring by Course' , user: req.user
 			 });
     });
