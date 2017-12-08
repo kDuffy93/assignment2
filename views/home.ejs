@@ -1,13 +1,17 @@
-<!-- includes the partial file header.ejs --> 
+<!-- includes the partial file header.ejs -->
 <% include ./partials/header.ejs %>
-<!-- display the proper home page > user authenticated / no user --> 
+<!-- display the proper home page > user authenticated / no user -->
+<div class="col-md-7 col-md-offset-2">
  <% if (!user) { %>
+
 <h1> Welcome to the Western Certifications App<h1>
     <h2> Head over to the <a href="/login"> login </a> page to get started</h2>
-<% } 
+  </div>
+<% }
 else { %>
-<h1> Hi <%= user.firstName %>, Welcome to the Western Certifications App<h1>
+<h1> Hi <%= user.firstName %>,</br> Welcome to the Western Certifications App<h1>
         <h2> Head over to the <a href="/home"> dashboard </a> to get started</h2>
+          </div>
 <% } %>
-<!-- includes the partial file footer.ejs --> 
+<!-- includes the partial file footer.ejs -->
 <%include ./partials/footer.ejs%>

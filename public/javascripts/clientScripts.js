@@ -8,7 +8,7 @@ $('.confirmation').on('click', function() {
 
 
 function clickTable(clickedRow) {
-window.location.href="manageEmployees/viewEmployeeCertifications/" + clickedRow.id;
+window.location.href="viewEmployeeCertifications/" + clickedRow.id;
 }
 
 function OnSelectedIndexChanged(finterBY)
@@ -24,8 +24,8 @@ filterTable();
 function toggleCategorySearch(checkboxObj)
 {
   console.log("yes im working " +  checkboxObj.checked);
- 
-  
+
+
   if(checkboxObj.checked == true)
   {
     console.log("in if");
@@ -37,7 +37,7 @@ else{
    filterTable();
 
 }
- 
+
 }
 
 function ddl()
@@ -99,13 +99,13 @@ function filterWithCategory()
 
   if(filterCategory != "" && chk.checked != false)
   {
-    for (let i = 0; i < tr.length; i++) 
+    for (let i = 0; i < tr.length; i++)
     {
       let td = tr[i].getElementsByTagName("td")[3];
-      if (td) 
+      if (td)
       {
         let imgs = td.getElementsByTagName('img');
-        if (imgs.length > 0) 
+        if (imgs.length > 0)
         {
             for (let x=0; x < imgs.length; x++)
             {
@@ -114,20 +114,20 @@ function filterWithCategory()
                 if(currentImgTitle.indexOf(filterCategory) > -1)
                 {
 
-                  
+
                  //   tr[i].style.display = "";
 
                       if(filterByValue == "First Names")
                       {
                             let td1 = tr[i].getElementsByTagName("td")[0];
-                            if (td1) 
+                            if (td1)
                             {
-                                if (td1.innerHTML.toUpperCase().indexOf(filter) > -1) 
+                                if (td1.innerHTML.toUpperCase().indexOf(filter) > -1)
                                 {
                                   console.log(tr[i].id + "  -   i have a cartificate with " + filterCategory + " in it");
                                     tr[i].style.display = "";
-                                } 
-                                else 
+                                }
+                                else
                                 {
                                     tr[i].style.display = "none";
                                 }
@@ -136,14 +136,14 @@ function filterWithCategory()
                       if(filterByValue == "Last Names")
                       {
                             let td1 = tr[i].getElementsByTagName("td")[1];
-                            if (td1) 
+                            if (td1)
                             {
-                                if (td1.innerHTML.toUpperCase().indexOf(filter) > -1) 
+                                if (td1.innerHTML.toUpperCase().indexOf(filter) > -1)
                                 {
                                   console.log(tr[i].id + "  -   i have a cartificate with " + filterCategory + " in it");
                                    tr[i].style.display = "";
-                                } 
-                                else 
+                                }
+                                else
                                 {
                                    tr[i].style.display = "none";
                                 }
@@ -152,14 +152,14 @@ function filterWithCategory()
                       if(filterByValue == "Departments")
                       {
                             let td1 = tr[i].getElementsByTagName("td")[2];
-                            if (td1) 
+                            if (td1)
                             {
-                                if (td1.innerHTML.toUpperCase().indexOf(filter) > -1) 
+                                if (td1.innerHTML.toUpperCase().indexOf(filter) > -1)
                                 {
                                   console.log(tr[i].id + "  -   i have a cartificate with " + filterCategory + " in it");
                                     tr[i].style.display = "";
-                                } 
-                                else 
+                                }
+                                else
                                 {
                                    tr[i].style.display = "none";
                                 }
@@ -173,7 +173,7 @@ function filterWithCategory()
                    tr[i].style.display = "none";
                 }
             }
-            
+
         }
         else
         {
@@ -211,7 +211,7 @@ else if(filterByValue == "Last Names")
         tr[i].style.display = "none";
       }
     }
-  } 
+  }
 }
 
 else if(filterByValue == "Departments")
@@ -240,7 +240,7 @@ function filterTable() {
   let finterBY = document.getElementById("sortBy");
 var filterByValue = finterBY.options[finterBY.selectedIndex].value;
 
-if(enableCertificateSearch.checked != true) 
+if(enableCertificateSearch.checked != true)
 {
   console.log("filterTable() if checked != true");
 if(filterByValue == "First Names")
@@ -268,7 +268,7 @@ else if(filterByValue == "Last Names")
         tr[i].style.display = "none";
       }
     }
-  } 
+  }
 }
 
 else if(filterByValue == "Departments")
@@ -292,8 +292,8 @@ else
 }
 
   // Loop through all table rows, and hide those who don't match the search query
-  
-  
+
+
 }
 else{
    console.log("Checkbox is checked, using filter with category");
@@ -301,5 +301,3 @@ else{
 }
 
 }
-
-

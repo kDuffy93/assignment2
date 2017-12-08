@@ -13,13 +13,13 @@ let plm = require('passport-local-mongoose');
 var department = require ('../models/department');
   /* GET department page */
   router.use( function(req, res, next) {
-  
+
 if(!req.user){
   req.session.messages =["You must be logged-in to view this page"];
   req.session.messages1 = ["please enter you're credentials below"];
    req.session.returnURL = [];
   req.session.returnURL = req.url;
-   
+
   res.redirect('/login')
 }
 next();
@@ -45,26 +45,26 @@ router.get('/department', function(req, res, next) {
       }
       res.render('employee/department/departmentIndex', {
          departments: departments,
-         title: 'Departments Index' , user: req.user 
+         title: 'Departments Index' , user: req.user
       });
    });
 });
 
 // load the add a department page upon get reuqest
 router.get('/department/add', function(req, res, next) {
-res.render('employee/department/add', { 
-         title: 'Add Department' , user: req.user 
+res.render('employee/department/add', {
+         title: 'Add Department' , user: req.user
  });
 });
 
-// add the new department to the database assuming it meets validation critera when the router gets a post 
+// add the new department to the database assuming it meets validation critera when the router gets a post
 router.post('/department/add', function(req, res, next) {
   department.create(
     {
         departmentname : req.body.departmentname
      }, function (err, departments)
         {
-          if (err) 
+          if (err)
           {
               console.log(err);
               res.render('error');
@@ -73,12 +73,12 @@ router.post('/department/add', function(req, res, next) {
            res.redirect('/employeeDashboard/department');
     });
       });
- 
+
 // remove the department with a matching _id from the database
   router.get('/department/delete/:_id', function(req, res, next) {
     let _id = req.params._id;
   department.remove({ _id: _id }, function (err, departments) {
-          if (err) 
+          if (err)
           {
               console.log(err);
               res.render('error');
@@ -102,10 +102,10 @@ router.post('/department/add', function(req, res, next) {
       //if theres a matchid id, load the edit page for that department
       res.render('employee/department/edit', {
          department: department,
-         title: 'Edit Department' , user: req.user 
+         title: 'Edit Department' , user: req.user
       });
    });
- 
+
 });
 
 // runs when the server gets a post request from the edit department table
@@ -148,7 +148,7 @@ course.find(function(err, allCourses) {
          res.end(err);
          return;
       }
- 
+
    user.find(function(err, users) {
       if (err) {
          console.log(err);
@@ -160,9 +160,9 @@ course.find(function(err, allCourses) {
         allUserCourses: allUserCourses,
         allCourses: allCourses,
          users: users,
-         title: 'Users Index' , user: req.user 
+         title: 'Users Index' , user: req.user
       });
-   });
+   }).sort({surName: 'asc'}).exec(function(err, docs) {  });
 });
  });
  });
@@ -175,7 +175,7 @@ router.get('/manageEmployees/add', function(req, res, next) {
          res.end(err);
          return;
       }
-      res.render('employee/manageEmployees/add', { 
+      res.render('employee/manageEmployees/add', {
          departments: departments,
          title: 'Add User',
          user: req.user
@@ -198,13 +198,13 @@ router.post('/manageEmployees/add', function(req, res, next) {
      }),
      req.body.password, function (err, departments)
         {
-          if (err) 
+          if (err)
           {
               console.log(err);
               res.render('error'), { title: 'create new employee error'};
               return;
           }
-           res.redirect('/employeeDashboard/manageEmployee');  
+           res.redirect('/employeeDashboard/manageEmployee');
     });
   });
 
@@ -212,7 +212,7 @@ router.post('/manageEmployees/add', function(req, res, next) {
 
     let _id = req.params._id;
   user.remove({ _id: _id }, function (err, departments) {
-          if (err) 
+          if (err)
           {
               console.log(err);
               res.render('error');
@@ -227,13 +227,13 @@ router.post('/manageEmployees/add', function(req, res, next) {
    // grab id from the url
    let _id = req.params._id;
    department.find(function(err, departments) {
-     
+
       if (err) {
          console.log(err);
          res.end(err);
          return;
       }
-  
+
 
    // use mongoose to find the selected book
    user.findById(_id, function(err, userInfo) {
@@ -247,7 +247,7 @@ router.post('/manageEmployees/add', function(req, res, next) {
          user: userInfo,
           departments: departments,
          title: 'Edit User',
-         dptName: dptName 
+         dptName: dptName
       });
     });
   });
@@ -272,21 +272,21 @@ router.post('/manageEmployees/:_id', function(req, res, next) {
       departmentname : req.body.departmentname,
         email: req.body.email,
         phonenumber: req.body.phonenumber,
-      password: req.body.password   
+      password: req.body.password
    });
-   
+
 if(req.body.password != "")
 {
      if(req.body.password == req.body.confirm)
    {
 
    user.update({ _id: _id }, User,  function(err) {
-     
 
 
-   
-   
- 
+
+
+
+
       if (err) {
          console.log(err);
          res.render('error');
@@ -298,8 +298,8 @@ if(req.body.password != "")
 }
 });
 //------------------------------for employee Certificates------------------------------------------------
-router.get('/manageEmployees/employeeCertifications/:_id', function(req, res, next) {
- 
+router.get('/employeeCertifications/:_id', function(req, res, next) {
+
    // grab id from the url
    let _id = req.params._id;
    user.findById(_id, function(err, users) {
@@ -309,7 +309,7 @@ router.get('/manageEmployees/employeeCertifications/:_id', function(req, res, ne
          return;
       }
 course.find(function(err, courses) {
-     
+
       if (err) {
          console.log(err);
          res.end(err);
@@ -320,28 +320,28 @@ course.find(function(err, courses) {
          users: users,
          uid: users._id,
 courses: courses,
-         title: 'Departments Index' , user: req.user 
+         title: 'Departments Index' , user: req.user
    });
  });
 });
 });
 
 
-router.post('/manageEmployees/employeeCertifications/:_id', function(req, res, next) {
+router.post('/employeeCertifications/:_id', function(req, res, next) {
 
    // grab id from url
    let user_id = req.params._id;
 
  userCourse.find({ 'userid' :  user_id },function(err, selectedUsersCourses) {
-     
+
       if (err) {
          console.log(err);
          res.end(err);
          return;
       }
       console.log(selectedUsersCourses.length + "   " + selectedUsersCourses);
-      
- if(selectedUsersCourses.length != 0)   
+
+ if(selectedUsersCourses.length != 0)
  {
 console.log("in if");
 
@@ -354,10 +354,10 @@ if(req.body.coursename == selectedUsersCourses[i].coursename)
       userid: user_id,
       coursename: req.body.coursename,
       expiry : req.body.expiry
-      
+
    });
    console.log("populated new model");
- 
+
 
    userCourse.update({ _id: selectedUsersCourses[i]._id }, updatedUserCourse,  function(err) {
       if (err) {
@@ -366,7 +366,7 @@ if(req.body.coursename == selectedUsersCourses[i].coursename)
          return;
       }
       console.log("after update");
-     
+
    });
  res.redirect('/employeeDashboard/manageEmployee');
  console.log("before return");
@@ -377,7 +377,7 @@ if(req.body.coursename == selectedUsersCourses[i].coursename)
  console.log("before next()");
 
  }
- 
+
 
 
 userCourse.create(
@@ -385,22 +385,22 @@ userCourse.create(
       userid: user_id,
       coursename: req.body.coursename,
       expiry : req.body.expiry
-      
+
    });
- 
+
       res.redirect('/employeeDashboard/manageEmployee');
 
 
 
    // populate new book from the form
-  
+
    });
     });
 
 
-    router.get('/manageEmployees/viewEmployeeCertifications/:_id', function(req, res, next) {
+    router.get('/viewEmployeeCertifications/:_id', function(req, res, next) {
 
- 
+
    // grab id from the url
    let _id = req.params._id;
     user.findById(_id, function(err, users) {
@@ -409,7 +409,7 @@ userCourse.create(
          res.render('error');
          return;
       }
-   
+
    userCourse.find({ 'userid' :   _id }, function(err, userCourses) {
       if (err) {
          console.log(err);
@@ -421,29 +421,29 @@ userCourse.create(
        res.render('employee/manageEmployees/viewemployeecertifications', {
          users: users,
          userCourses: userCourses,
-         title: 'Departments Index' , user: req.user 
+         title: 'Departments Index' , user: req.user
    });
  });
 });
 });
 
-  router.get('/manageEmployees/viewEmployeeCertifications/delete/:_id/:user_id', function(req, res, next) {
+  router.get('/viewEmployeeCertifications/delete/:_id/:user_id', function(req, res, next) {
 console.log(req.params);
     let _id = req.params._id;
     let user_id = req.params.user_id;
   userCourse.remove({ _id: _id }, function (err, departments) {
-          if (err) 
+          if (err)
           {
               console.log(err);
               res.render('error');
               return;
           }
-           res.redirect('/employeeDashboard/manageEmployees/viewEmployeeCertifications/' + user_id);
+           res.redirect('/employeeDashboard/viewEmployeeCertifications/' + user_id);
     });
   });
 
 
-   
+
 
 
 

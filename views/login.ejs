@@ -1,4 +1,4 @@
-<!-- includes the partial file header.ejs --> 
+<!-- includes the partial file header.ejs -->
 <% include partials/header.ejs %>
 
 <main class="container">
@@ -9,8 +9,8 @@
     <%  } %>
     <h1 class="col-xs-5 col-xs-offset-3" style="margin-bottom:20px;">Login</h1>
     <!--  checks the session to see if it needs to change the banner above login   -->
-<% if (messages.length > 0) { 
-    if(messages1.length > 0) 
+<% if (messages.length > 0) {
+    if(messages1.length > 0)
     {%>
     <div class="col-xs-12 alert alert-danger alert-dismissable">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a> <%= messages %> </br> <%= messages1 %>  </div>
@@ -20,13 +20,13 @@ else
 { %>
 <div class="col-xs-12 alert alert-danger alert-dismissable">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a> <%= messages %> </div>
-  <% } } 
+  <% } }
 
 else { %>
 
 <div class="col-xs-12 alert alert-info alert-dismissable">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-   Please Enter your <strong> email </strong> </br> and <strong>password</strong> below!
+   Please Enter your <strong> Worker ID Number </strong> </br> and <strong>password</strong> below!
   </div>
 
 <% } %>
@@ -41,7 +41,7 @@ else { %>
             <input style="max-width:450px;" class="col-xs-9" name="password" id="password" type="password" required />
             <button style="max-width:450px; margin-top:20px;" class="col-xs-4 col-xs-offset-4 btn btn-success">Login</button>
         </div>
-        
+
     </form>
 
 </main>

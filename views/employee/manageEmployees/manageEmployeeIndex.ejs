@@ -2,6 +2,7 @@
 
 
 <div class="container-fluid" style="margin-top:50px;">
+  <div class="container-fluid" style="margin-bottom:30px;">
 <div id="filterDiv"style="padding-top:20px;" class="col-md-offset-4">
     <div style="float:top;">
     <label for="filterCategory">Enable/Disable Search By Certificate</label>
@@ -25,6 +26,7 @@
     </div>
 </div>
 <a href="manageEmployees/add" class="btn btn-success" style="margin-bottom:10px;">Add a New employee</a>
+</div>
 
 
 <table class="tablesorter table table-hover table-responsive table-bordered" id="filterTable">
@@ -36,7 +38,7 @@
             <td class="active"><%= users[i].surName %></td>
             <td class="warning" ><%= users[i].departmentname %></td>
             <td class="info">
-                <a href="manageEmployees/employeeCertifications/<%= users[i]._id %>" class="btn btn-info">Add New Certificate</a>
+                <a href="employeeCertifications/<%= users[i]._id %>" class="btn btn-info">Add New Certificate</a>
                  </br>
               <% for (var j = 0; j < allUserCourses.length; j++)
                 {
