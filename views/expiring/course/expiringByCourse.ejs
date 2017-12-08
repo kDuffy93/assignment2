@@ -1,0 +1,66 @@
+<% include ../../partials/header.ejs %>
+
+<div class="container-fluid" style="margin-top:50px;">
+
+
+<table class="table table-hover table-responsive table-bordered" id="filterTable">
+  <% for (var i = 0; i < courses.length; i++) {
+var w = 0;
+    for (var t = 0; t < allUserCourses.length; t++) {
+
+      if(allUserCourses[t].coursename == courses[i].coursename && allUserCourses[t].expiry <  curdate){
+        w=w+1;
+    }
+  }
+console.log(courses[i].coursename + '     ' + w);
+  if(w != 0){
+
+
+     %>
+    <tr style='background-color:darkGray'>
+      <th> <h4><b><em><%= courses[i].coursename %> </em></b></h4></th>
+    </tr>
+    <tr style='background-color:Gray'><th>firstName</th><th>LastName</th><th>expiry</th>
+      <%
+    for (var x = 0; x < allUserCourses.length; x++) {
+        if(allUserCourses[x].coursename == courses[i].coursename && allUserCourses[x].expiry <  curdate){
+
+        %>
+
+  <% for (var o = 0; o < users.length; o++) {
+
+    if (allUserCourses[x].userid == users[o]._id)
+    {
+      if(allUserCourses[x].expiry < now){ %>
+        <tr style='background-color:red'>
+      <% }
+      else { %>
+        <tr style='background-color:orange'>
+    <%  }%>
+
+
+
+  <td><%=users[o].firstName %></td>
+  <td><%= users[o].surName %></td>
+
+
+  <td><%= allUserCourses[x].expiry %> </td>
+</tr>
+
+      <%
+    }
+  }
+    }
+        }
+      }
+     } %>
+
+
+
+
+
+
+
+</table>
+</div>
+<%include ../../partials/footer.ejs%>

@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var tablesort = require('tablesort');
 var bcrypt = require('bcrypt-nodejs');
 var async = require('async');
 var crypto = require('crypto');
@@ -20,7 +20,7 @@ var home = require('./routes/home')
 // include the 3 main routes to assign their '/' directory
 var employeeDashboard = require('./routes/employeeDashboard');
 var certificatesDashboard = require('./routes/certificatesDashboard');
-var expiringSoon = require('./routes/expiringSoon');
+var expiringDashboard  = require('./routes/expiringDashboard');
 
 var app = express();
 
@@ -61,7 +61,7 @@ app.use('/', home);
 app.use('/home', index)
 app.use('/employeeDashboard', employeeDashboard);
 app.use('/certificatesDashboard', certificatesDashboard);
-app.use('/expiringSoon', expiringSoon);
+app.use('/expiringDashboard', expiringDashboard);
 
 
 
