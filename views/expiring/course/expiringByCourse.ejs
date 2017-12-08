@@ -1,8 +1,10 @@
 <% include ../../partials/header.ejs %>
 
 <div class="container-fluid" style="margin-top:50px;">
-<label  class="col-xs-2 col-xs-offset-8"for="daysUntilExpiry">Days Until Expiry</label>
-  <select class="col-xs-1" name="daysUntilExpiry" id="daysSelection">
+  <div class="container-fluid" style="margin-bottom:50px;">
+  <h3 class="col-xs-6 col-xs-offset-2">Viewing All Courses Expiring In The Next <%=days%> Days</h3>
+<label  class="col-xs-offset-1"for="daysSelection">Days Until Expiry:     </label>
+  <select class="" name="daysUntilExpiry" id="daysSelection">
     <%console.log('DAYS!!!!!!!!!!!!!!!!!!!!!!!!!!' + days);%>
     <%if(days==0)
     { %>
@@ -54,7 +56,7 @@ else{%>
 });
 
   </script>
-
+</div>
 
 <table class="table table-hover table-responsive table-bordered" id="filterTable">
   <% for (var i = 0; i < courses.length; i++) {
