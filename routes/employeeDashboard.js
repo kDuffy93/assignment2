@@ -24,6 +24,12 @@ if(!req.user){
 }
 next();
   });
+  router.use( function(req, res, next) {
+  if(req.user.changepassword == true){
+    res.redirect('/firstlogin')
+  }
+  next();
+    });
 
 
 /* GET the employee dashboard */
@@ -194,7 +200,9 @@ router.post('/manageEmployees/add', function(req, res, next) {
         surName : req.body.surName,
         departmentname :  req.body.departmentname,
         email: req.body.email,
-        phonenumber: req.body.phonenumber
+        phonenumber: req.body.phonenumber,
+        password: req.body.password,
+        changepassword: true
      }),
      req.body.password, function (err, departments)
         {
@@ -262,30 +270,88 @@ router.post('/manageEmployees/:_id', function(req, res, next) {
    let _id = req.params._id;
    let lowerusername = req.body.username.toLowerCase();
 
-   // populate new book from the form
-   let User = new user({
-
-      _id: _id,
-      username: lowerusername,
-      firstName : req.body.firstName,
-      surName : req.body.surName,
-      departmentname : req.body.departmentname,
-        email: req.body.email,
-        phonenumber: req.body.phonenumber,
-      password: req.body.password
-   });
-
 if(req.body.password != "")
 {
      if(req.body.password == req.body.confirm)
    {
 
+    user.findById( _id, function(err, user) {
+         if (!user) {
+           req.flash('error', 'no user with that name');
+           return res.redirect('back');
+         }
+
+
+         user.username= lowerusername;
+       user.firstName = req.body.firstName;
+         user.surName = req.body.surName;
+         user.departmentname = req.body.departmentname;
+           user.email= req.body.email;
+           user.phonenumber= req.body.phonenumber;
+           user.changepassword = true;
+user.setPassword(req.body.password, function(){
+
+
+         user.save(function(err) {
+     res.redirect('/employeeDashboard/manageEmployee');
+     });
+         });
+       });
+  }
+}
+else{
+  user.findById( _id, function(err, user) {
+       if (!user) {
+         req.flash('error', 'no user with that name');
+         return res.redirect('back');
+       }
+
+
+       user.username= lowerusername;
+     user.firstName = req.body.firstName;
+       user.surName = req.body.surName;
+       user.departmentname = req.body.departmentname;
+         user.email= req.body.email;
+         user.phonenumber= req.body.phonenumber;
+
+         user.save(function(err) {
+       res.redirect('/employeeDashboard/manageEmployee');
+       });
+});
+}
+});
+
+/* let newUser = new user({
+
+    _id: _id,
+    username: lowerusername,
+    firstName : req.body.firstName,
+    surName : req.body.surName,
+    departmentname : req.body.departmentname,
+      email: req.body.email,
+      phonenumber: req.body.phonenumber,
+
+ });
+*/
+
+/*  let workingUser =   user.findById(_id, function(err, userInfo) {
+      if (!user) {
+        req.flash('error', 'broken');
+        return res.redirect('back');
+      }
+    });
+
+    console.log(workingUser.password);
+
+
+      workingUser.password = req.body.password;
+
+console.log( workingUser.password);
+
+  user.
+
+
    user.update({ _id: _id }, User,  function(err) {
-
-
-
-
-
 
       if (err) {
          console.log(err);
@@ -293,10 +359,7 @@ if(req.body.password != "")
          return;
       }
       res.redirect('/employeeDashboard/manageEmployee');
-   });
-  }
-}
-});
+   });*/
 //------------------------------for employee Certificates------------------------------------------------
 router.get('/employeeCertifications/:_id', function(req, res, next) {
 
@@ -441,13 +504,6 @@ console.log(req.params);
            res.redirect('/employeeDashboard/viewEmployeeCertifications/' + user_id);
     });
   });
-
-
-
-
-
-
-
 
 
 

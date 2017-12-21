@@ -25,12 +25,17 @@ var userSchema = new mongoose.Schema({
     },
     phonenumber: {
     type: String
-    }
-});  
+  },
+  password: { type: String, required: true },
+  resetPasswordToken: String,
+    changepassword: Boolean,
+  resetPasswordExpires: Date
+});
+/*
 userSchema.pre('save', function(next) {
     var user = this;
     var SALT_FACTOR = 5;
-
+console.log('Im in the Pre save funtion !!!!!!!!!!!!!!!!!@^%@^!%#^%$&!^$&!^&!^#*!&*!^*#')
     if (!user.isModified('password')) return next();
 
     bcrypt.genSalt(SALT_FACTOR, function(err, salt) {
@@ -38,19 +43,22 @@ userSchema.pre('save', function(next) {
 
         bcrypt.hash(user.password, salt, null, function(err, hash) {
             if (err) return next(err);
+                console.log(user.password)
             user.password = hash;
             next();
+            console.log('Im in the Pre save funtion !!!!!!!!!!!!!!!! After pw change')
+              console.log(user.password)
         });
     });
 });
-
+*/
 userSchema.methods.comparePassword = function(candidatePassword, cb) {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
         if (err) return cb(err);
         cb(null, isMatch);
     });
 };
-userSchema.plugin(plm);
+userSchema.plugin(plm, { hashField : 'hash' });
 userSchema.plugin(findOrCreate);
 
 // make it public

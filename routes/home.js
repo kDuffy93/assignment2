@@ -13,17 +13,59 @@ let localStrategy = require('passport-local').Strategy;
 
 /* GET home page. */
 router.get('/',   function(req, res, next) {
-  
 
-res.render('home', { title: 'Western Certificates Home',
-user: req.user}); 
+  if(req.user != undefined)
+  {
+    if(req.user.changepassword == true){
+      res.redirect('/firstlogin')
+
+    }
+  }
+
+
+      res.render('home', { title: 'Western Certificates Home',
+      user: req.user});
+
+
 });
+
+router.get('/firstlogin',   function(req, res, next) {
+
+    res.render('firstlogin', { title: 'Please Change Your Password',
+    user: req.user});
+
+});
+
+
+router.post('/firstlogin', function(req, res, next) {
+ let _id = req.user._id;
+console.log(_id);
+ User.findById( _id, function(err, user) {
+      if (!user) {
+        req.flash('error', 'no user with that name');
+        return res.redirect('back');
+      }
+      user.changepassword = false;
+      user.setPassword(req.body.password, function(){
+
+
+               user.save(function(err) {
+
+           res.redirect('/');
+           });
+               });
+ });
+      });
+
+
+
+
 
 function usernameToLowerCase(req, res, next){
   if(req.body.username != undefined)
   {
 
-  
+
     req.body.username = req.body.username.toLowerCase();
     next();
   }
@@ -49,7 +91,7 @@ router.get('/login', function(req, res, next) {
     returnURL: returnURL,
     user: null
   });
-  
+
 });
 
 
@@ -65,13 +107,13 @@ if(returnURL)
   successRedirect: '/' + returnURL ,
   failureRedirect: '/login',
     failureMessage: 'Invalid Login'
-  
+
   })
 
 }
 else
 {
-  
+
   console.log(returnURL + "from else");*/
   passport.authenticate('local', {
   successRedirect: '/',
@@ -79,7 +121,7 @@ else
     failureMessage: 'Invalid Login'
   }));
 //}
-  
+
 //});
 
 

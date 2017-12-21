@@ -17,6 +17,12 @@ if(!req.user){
 }
 next();
 	});
+	router.use( function(req, res, next) {
+	if(req.user.changepassword == true){
+	  res.redirect('/firstlogin')
+	}
+	next();
+	  });
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {

@@ -25,21 +25,21 @@
             <!--  logic to populate the select dropdown   -->
 <% for (var i = 0; i < departments.length; i++) { %>
 <% if(departments[i].departmentname == dptName){ %>
-<option selected="selected" value="<%= departments[i].departmentname%>"> 
+<option selected="selected" value="<%= departments[i].departmentname%>">
          <%= departments[i].departmentname%>
        </option>
  <% } %>
 <% if(departments[i].departmentname != dptName ){ %>
-<option  value="<%= departments[i].departmentname%>"> 
+<option  value="<%= departments[i].departmentname%>">
          <%= departments[i].departmentname%>
        </option>
  <% } %>
 
  <% } %>
-     
-   
+
+
         </select>
-         
+
    </div>
    <div class="form-group row">
             <label for="email" class="col-sm-2 control-label">Email: </label>
@@ -50,15 +50,15 @@
             <input name="phonenumber" id="phonenumber"  type="tel" value="<%= user.phonenumber %>"/>
         </div>
 
-        <!--
+
  <div class="form-group row">
             <label for="password" class="col-sm-2 control-label">Password: </label>
-            <input name="password" id="password" type="password" required />
+            <input name="password" id="password" type="password" />
         </div>
             <div class="form-group row">
             <label for="confirm" class="col-sm-2 control-label">Re-Type Password: </label>
-            <input name="confirm" id="confirm" type="password" required />
-            </div>-->
+            <input name="confirm" id="confirm" type="password" />
+            </div>
 
     <button class="btn btn-success col-sm-offset-2">Save</button>
 </form>

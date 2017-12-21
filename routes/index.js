@@ -8,9 +8,22 @@ let localStrategy = require('passport-local').Strategy;
 
 // authenticates all routes in this view
 function isLoggedIn(req, res, next) {
-   if (req.isAuthenticated()) {
-      return next(); // user is logged, so call the next function
-   }
+  console.log(req.user.changepassword);
+  if (req.user.changepassword == true) {
+    console.log(req.user.changepassword);
+    res.redirect('/firstlogin');
+  // user is logged, so call the next function
+  if (req.isAuthenticated()) {
+     return next(); // user is logged, so call the next function
+  }
+  }
+  router.use( function(req, res, next) {
+  if(req.user.changepassword == true){
+    res.redirect('/firstlogin')
+  }
+  next();
+    });
+
 console.log('redirected from external function');
 req.session.messages =["You must be logged-in to view this page"];
   req.session.messages1 = ["please enter you're credentials below"];
@@ -21,10 +34,12 @@ req.session.messages =["You must be logged-in to view this page"];
 
 /* GET home page. */
 router.get('/', isLoggedIn,  function(req, res, next) {
-  
 
-res.render('index', { title: 'Dashboard',
-user: req.user}); 
+
+  res.render('index', { title: 'Dashboard',
+  user: req.user});
+
+
 });
 
 
