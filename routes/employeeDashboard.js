@@ -249,7 +249,8 @@ router.post('/manageEmployees/add', function(req, res, next) {
          res.render('error');
          return;
       }
-     var dptName = user.departmentname;
+
+     var dptName = userInfo.departmentname;
       res.render('employee/manageEmployees/edit', {
          user: userInfo,
           departments: departments,
@@ -300,7 +301,7 @@ user.setPassword(req.body.password, function(){
        });
   }
 }
-else{
+else {
   user.findById( _id, function(err, user) {
        if (!user) {
          req.flash('error', 'no user with that name');
@@ -320,6 +321,8 @@ else{
        });
 });
 }
+
+
 });
 
 /* let newUser = new user({
