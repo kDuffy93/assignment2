@@ -24,7 +24,7 @@
         <select name="departmentname" id="departmentname" >
             <!--  logic to populate the select dropdown   -->
 <% for (var i = 0; i < departments.length; i++) {
-<% if(departments[i].departmentname == dptName){ %>
+ if(departments[i].departmentname == dptName){ %>
 <option selected="selected" value="<%= departments[i].departmentname%>">
          <%= departments[i].departmentname%>
        </option>
