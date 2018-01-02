@@ -201,7 +201,6 @@ router.post('/manageEmployees/add', function(req, res, next) {
         departmentname :  req.body.departmentname,
         email: req.body.email,
         phonenumber: req.body.phonenumber,
-        password: req.body.password,
         changepassword: true
      }),
      req.body.password, function (err, departments)
@@ -289,10 +288,12 @@ if(req.body.password != "")
            user.email= req.body.email;
            user.phonenumber= req.body.phonenumber;
            user.changepassword = true;
+           console.log(user);
 user.setPassword(req.body.password, function(){
 
 
          user.save(function(err) {
+
      res.redirect('/employeeDashboard/manageEmployee');
      });
          });

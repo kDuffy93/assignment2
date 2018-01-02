@@ -26,10 +26,10 @@ var userSchema = new mongoose.Schema({
     phonenumber: {
     type: String
   },
-  password: { type: String, required: true },
-  resetPasswordToken: String,
-    changepassword: Boolean,
-  resetPasswordExpires: Date
+  changepassword:{
+    type: Boolean
+  }
+
 });
 /*
 userSchema.pre('save', function(next) {
