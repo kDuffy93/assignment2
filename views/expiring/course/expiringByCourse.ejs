@@ -75,7 +75,7 @@ console.log(courses[i].coursename + '     ' + w);
     <tr style='background-color:darkGray'>
       <th> <h4><b><em><%= courses[i].coursename %> </em></b></h4></th>
     </tr>
-    <tr style='background-color:Gray'><th><b>first Name</b></th><th><b>Last Name</b></th><th><b>Expiry</b></th>
+    <tr style='background-color:Gray'><th><b>First Name</b></th><th><b>Last Name</b></th><th><b>Expiry</b></th>
       <%
     for (var x = 0; x < allUserCourses.length; x++) {
         if(allUserCourses[x].coursename == courses[i].coursename && allUserCourses[x].expiry <  curdate){
