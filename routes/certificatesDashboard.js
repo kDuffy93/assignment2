@@ -134,15 +134,16 @@ router.post('/course/add', certIcon.single("certicon"), function(req, res, next)
       }
 
    // use mongoose to find the selected book
-  course.findById(_id, function(err, course) {
+  course.findById(_id, function(err, courseInfo) {
       if (err) {
          console.log(err);
          res.render('error');
          return;
       }
-      var selectedTypeName = course.courseType;
+      console.log(courseInfo.coursetype);
+      var selectedTypeName = courseInfo.coursetype;
       res.render('certificates/course/edit', {
-         course: course,
+         course: courseInfo,
           courseTypes: courseTypes,
          title: 'Edit course' ,selectedTypeName : selectedTypeName, user: req.user
       });
