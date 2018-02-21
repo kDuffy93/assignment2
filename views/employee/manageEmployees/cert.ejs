@@ -3,12 +3,12 @@
 $(document).on('change','#filterddl', toggleCategorySearch(this));
 </script>
 
-<main class="container">
-   
+<main class="container" style="padding-top:15px;">
+
 <h1>Add a New Employee Certificate</h1>
 
 <form method="post">
-  
+
     <div class="form-group">
             <label for="firstname" class="col-sm-2 control-label">First Name: </label>
             <input  id="firstname" name="firstname"  required type="text" readonly="true" value="<%= users.firstName %>" />
@@ -17,7 +17,7 @@ $(document).on('change','#filterddl', toggleCategorySearch(this));
             <label for="surname" class="col-sm-2 control-label">Last Name: </label>
             <input  id="surname" name="surname" readonly="true" required type="text"  value="<%= users.surName %>" />
         </div>
-    
+
 
    <div class="form-group">
         <label for="coursename" class="col-sm-2 control-label">Certification: </label>
@@ -30,7 +30,7 @@ $(document).on('change','#filterddl', toggleCategorySearch(this));
     <% } %>
         </select>
 
-        <label for="filterddl">Search By Certificate:  </label> 
+        <label for="filterddl">Search By Certificate:  </label>
     <input type="text" style="width:225px;" placeholder="Filter Certificates Dropdown" onforminput="ddl()" onformchange="ddl()" onsubmit="ddl()" onkeyup="ddl()" onchange="ddl()" onkeypress="ddl()" oninput="ddl()" onkeydown="ddl()" id="filterddl"/>
    </div>
 
@@ -38,7 +38,7 @@ $(document).on('change','#filterddl', toggleCategorySearch(this));
             <label for="expiry" class="col-sm-2 control-label">Expiry: </label>
             <input name="expiry" id="expiry" required type="date" placeholder="YYYY-MM-DD" min="2017-01-01" max="2050-01-01" />
         </div>
-  
+
     <button class="btn btn-success col-sm-offset-2">Save</button>
 </form>
 

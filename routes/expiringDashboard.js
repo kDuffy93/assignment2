@@ -15,7 +15,7 @@ if(!req.user){
 
 	res.redirect('/login')
 }
-next();
+next(); 
 	});
 	router.use( function(req, res, next) {
 	if(req.user.changepassword == true){
