@@ -62,6 +62,11 @@ else{%>
                 }
 
                     if(allUserCourses[j].userid == users[i]._id ) {
+                      if(allUserCourses[j].expiry < now)
+                        {
+                            continue;
+                        }
+
                           for(var w = 0; w < allCourses.length; w++)
                           {
                               if(allCourses[w].coursename == allUserCourses[j].coursename)
